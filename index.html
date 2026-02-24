@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Log in page!</title>
+  <link id="theme-stylesheet" rel="stylesheet" href="style/login1.css">
+  
+	<style>
+	body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+	
+	.buttons button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+	</style>
+</head>
+<body>
+ <div class="general">
+  <h2>Welcome!</h2>
+  <p>Let's get started =(◝ ⩊ ◜)=</p>
+	
+  <div class="buttons">
+	<button id="loginStart">Log in</button>
+	<button id="signUpStart">Sign up</button>
+  </div>
+  
+  <div>
+	<button onclick="loadCSS('style/login1.css')">💡</button>
+	<button onclick="loadCSS('style/login2.css')">⏾</button>
+  </div> 
+ </div>
+
+
+<script src="login1.js"></script>
+
+<script>
+    function loadCSS(href) {
+      const link = document.getElementById("theme-stylesheet");
+      link.href = href + "?v=" + new Date().getTime();
+    }
+</script>
+
+</body>
+</html>
