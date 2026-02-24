@@ -1,54 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Log in page!</title>
-  <link id="theme-stylesheet" rel="stylesheet" href="style/login1.css">
-  
-	<style>
-	body {
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-	
-	.buttons button {
-            width: 100%;
-            padding: 10px;
-            margin-top: 10px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-	</style>
-</head>
-<body>
- <div class="general">
-  <h2>Welcome!</h2>
-  <p>Let's get started =(◝ ⩊ ◜)=</p>
-	
-  <div class="buttons">
-	<button id="loginStart">Log in</button>
-	<button id="signUpStart">Sign up</button>
-  </div>
-  
-  <div>
-	<button onclick="loadCSS('style/login1.css')">💡</button>
-	<button onclick="loadCSS('style/login2.css')">⏾</button>
-  </div> 
- </div>
+<html>
+    <head>
+        <title>Welcome!</title>
+        <link id="theme-link" rel="stylesheet" href="light.css">
+    </head>
+    <body>
 
+        <!-- Welcoming page -->
+        <div id="welcomePage" class="welcomePage">
+            <h2>Welcome!</h2>
+            <p>Let's get started ♡</p>
+            <button onclick="showLogin()">Log In</button>
+            <button class="signUp" onclick="showSignup()">Sign Up</button>
+        </div>
 
-<script src="login1.js"></script>
+        <!--Log in page-->
+        <div id="loginPage" class="loginPage">
+            <h2>Log in!</h2>
+            <p>Please enter your username and password♡</p>
+            <input type="text" id="loginUsername" placeholder="Username">
+            <input type="password" id="loginPassword" placeholder="Password">
+            <p>Dont have an account?</p>
+            <button class="signUp" onclick="showSignup()">Sign up here</button>
+        </div>
 
-<script>
-    function loadCSS(href) {
-      const link = document.getElementById("theme-stylesheet");
-      link.href = href + "?v=" + new Date().getTime();
-    }
-</script>
+        <!--Sign up page-->
+        <div id="signupPage" class="signupPage">
+            <h2>Sign up!</h2>
+            <p>Create an account♡</p>
+            <input type="text" id="signinUsername" placeholder="Username">
+            <input type="password" id="signinPassword" placeholder="Password">
+            <p>Already have an account?</p>
+            <button class="logIn" onclick="showLogin()">Log in here</button> 
+        </div>
 
-</body>
+        <!--Toggle dark and light mode-->
+        <button onclick="toggleTheme()">Toggle Theme</button>
+
+    <script src="theme.js"></script>
+    </body>
 </html>
