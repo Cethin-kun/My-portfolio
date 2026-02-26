@@ -1,4 +1,49 @@
 body {
-    background-color: white;
-    color: black;
+	font-family: Public Pixel;
+    background-color: pink;
+}
+
+h1 {
+	color:black;
+	background-color:yellow;
+	border-bottom: 10px dashed black;
+	border-top: 10px dashed black;
+}
+
+
+.templink {
+	background-color:lightpink;
+	display:inline-block;
+	border: 5px solid hotpink; 
+	padding: 4px;
+	border-radius: 10px;
+}
+
+.templink:hover {
+	background-color:hotpink;
+	display:inline-block;
+	border: 5px solid white; 
+	padding: 5px;
+	border-radius: 10px;
+}
+
+a {
+	color: white;
+}
+
+a:hover {
+	color: pink;
+}
+
+
+.welcomePage {
+	border:10px dashed lightblue;
+	border-radius:20px;
+	display: inline-block;
+	background-color:white;
+	padding:30px;
+}
+
+.welcomepage , p {
+	color:hotpink;
 }
