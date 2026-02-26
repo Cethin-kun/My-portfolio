@@ -1,5 +1,5 @@
 body {
-	font-family: Public Pixel;
+	font-family: courier;
     background-color: pink;
 }
 
@@ -47,3 +47,4 @@ a:hover {
 .welcomepage , p {
 	color:hotpink;
 }
+
