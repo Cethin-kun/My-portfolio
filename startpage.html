@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Desktop</title>
+     <style>
+        body {
+  background-image: url("windows.jpg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  background-attachment: fixed; 
+  height: 100vh; 
+  margin: 0; 
+  padding: 0;
+}
+
+button {
+    /* Remove default button styles */
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0; /* Remove default padding/margin issues */
+    outline: none; /* Remove the outline when clicked/focused in some browsers */
+}
+
+ .icons {
+    display: flex;
+ }
+
+ .hotbar {
+    position:absolute;
+    left:0px;
+    bottom:0px;
+    width:100hv;
+    height:auto;
+    overflow: hidden;
+ }
+
+ .hotbar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* This scales the image to cover the entire container while maintaining aspect ratio and cropping excess */
+}
+
+     </style>
+     </head>
+<body>
+    <div class="iCons">
+        <button type="button" onclick="alert('Notes opened!')">
+         <img style="height:100px; width:auto;" src="C:\Users\Cethin\OneDrive\Desktop\ict\new port\assets\start screen\NotesIcon.png" alt="Description of the button's action">
+        </button>
+        
+        <button type="button" onclick="alert('Warnings opened!')">
+         <img style="height:100px; width:auto;" src="C:\Users\Cethin\OneDrive\Desktop\ict\new port\assets\start screen\WarningsIcon.png" alt="Description of the button's action">
+        </button>
+
+        <button type="button" onclick="alert('Start opened!')">
+         <img style="height:100px; width:auto;" src="C:\Users\Cethin\OneDrive\Desktop\ict\new port\assets\start screen\startIcon.png" alt="Description of the button's action">
+        </button>
+    </div>
+        <div class="hotbar">
+          <img style="height:auto; width:100hv;" id="hotbar" src="C:\Users\Cethin\OneDrive\Desktop\ict\new port\assets\start screen\hotbar.png" alt="Description of the button's action">
+        </div>
+
+</body>
+</html>
