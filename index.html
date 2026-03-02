@@ -15,27 +15,31 @@
 }
 
 button {
-    /* Remove default button styles */
     background-color: transparent;
     border: none;
     cursor: pointer;
-    padding: 0; /* Remove default padding/margin issues */
-    outline: none; /* Remove the outline when clicked/focused in some browsers */
+    padding: 0;
+    outline: none;
 }
 
 a {
-    /* Remove default button styles */
     background-color: transparent;
     border: none;
     cursor: pointer;
-    padding: 0; /* Remove default padding/margin issues */
-    outline: none; /* Remove the outline when clicked/focused in some browsers */
+    padding: 0;
+    outline: none;
 }
 
- .icons {
+ .iCons {
     display: flex;
  }
 
+.iCon img {
+    height:100px; 
+    width:auto;
+}
+
+         
  .hotbar {
     position:fixed;
     left:0px;
@@ -56,16 +60,15 @@ a {
 <body>
     <div class="iCons">
         <button type="button" onclick="alert('Notes opened!')">
-         <img style="height:100px; width:auto;" src="assets/start screen/NotesIcon.png" alt="Description of the button's action">
+         <img src="assets/start screen/NotesIcon.png" alt="Description of the button's action">
         </button>
         
         <button type="button" onclick="alert('Warnings opened!')">
-         <img style="height:100px; width:auto;" src="assets/start screen/WarningsIcon.png" alt="Description of the button's action">
+         <img src="assets/start screen/WarningsIcon.png" alt="Description of the button's action">
         </button>
        
-        <a href="homepage.html" onclick="alert('Start opened!')">
+        <a href="homepage.html">
         <img 
-          style="height:100px; width:auto;" 
           src="assets/start screen/startIcon.png" 
           alt="Start">
         </a>
@@ -76,6 +79,7 @@ a {
 
 </body>
 </html>
+
 
 
 
