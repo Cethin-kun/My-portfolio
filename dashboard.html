@@ -15,7 +15,7 @@ body{
 
 .header{
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
   background: #222;
@@ -27,7 +27,6 @@ body{
 }
 
 .header span{
-  margin-right: 15px;
   font-weight: bold;
 }
 
@@ -35,14 +34,42 @@ body{
   background: transparent;
   border: none;
   color: white;
-  font-size: 20px;
+  font-size: 24px;
   cursor: pointer;
   font-weight: bold;
 }
 
 .container{
   text-align: center;
-  padding-top: 100px;
+  padding-top: 80px;
+}
+
+textarea{
+  width: 80%;
+  height: 200px;
+  margin-top: 20px;
+  font-size: 16px;
+  padding: 10px;
+  border-radius: 6px;
+  border: none;
+  resize: none;
+}
+
+textarea.readonly{
+  background: #333;
+  color: #ccc;
+}
+
+button.save-btn{
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  cursor: pointer;
+  border: none;
+  border-radius: 6px;
+  background: #0a84ff;
+  color: white;
+  font-size: 16px;
 }
 
 </style>
@@ -59,6 +86,9 @@ body{
 <div class="container">
   <h1>Dashboard</h1>
   <p id="welcome"></p>
+
+  <textarea id="dashboardText"></textarea>
+  <button id="saveBtn" class="save-btn" onclick="saveText()">Save</button>
 </div>
 
 <script>
@@ -73,11 +103,38 @@ if(!user){
 // Show username on top right
 document.getElementById("usernameDisplay").innerText = user.username
 
-// Show welcome message
+// Welcome message
 document.getElementById("welcome").innerText =
   "Welcome " + user.username + " to the dashboard!"
 
-// Logout / close function
+// Load saved dashboard text
+const dashboardText = localStorage.getItem("dashboardText") || "This is the dashboard text."
+const textArea = document.getElementById("dashboardText")
+textArea.value = dashboardText
+
+// Admin check
+const saveBtn = document.getElementById("saveBtn")
+
+if(user.isAdmin){
+  textArea.readOnly = false
+  textArea.classList.remove("readonly")
+  saveBtn.style.display = "block"
+}else{
+  textArea.readOnly = true
+  textArea.classList.add("readonly")
+  saveBtn.style.display = "none"
+}
+
+// Save function
+function saveText(){
+  if(user.isAdmin){
+    const text = textArea.value
+    localStorage.setItem("dashboardText", text)
+    alert("Dashboard text saved!")
+  }
+}
+
+// Logout / close button
 function logout(){
   localStorage.removeItem("loggedInUser")
   window.location.href="index.html"
