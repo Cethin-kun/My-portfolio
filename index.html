@@ -11,6 +11,7 @@ background-size:cover;
 background-position:center;
 height:100vh;
 margin:0;
+font-family:Arial;
 }
 
 button{
@@ -44,6 +45,12 @@ background:white;
 padding:25px;
 border-radius:10px;
 width:320px;
+animation:pop .2s ease;
+}
+
+@keyframes pop{
+from{transform:scale(.8);opacity:0}
+to{transform:scale(1);opacity:1}
 }
 
 .tabs{
@@ -135,11 +142,10 @@ height:150px;
 <img width="100" src="assets/start screen/startIcon.png">
 </button>
 
-
 <button id="dashboardIcon" onclick="openDashboard()" style="display:none;">
 <img width="100" src="assets/start screen/dashboardIcon.png">
 </button>
-  
+
 </div>
 
 <!-- NOTES WINDOW -->
@@ -230,6 +236,12 @@ document.querySelector(".close").onclick = ()=>{
 modal.style.display="none"
 }
 
+window.onclick = function(e){
+if(e.target === modal){
+modal.style.display="none"
+}
+}
+
 function showTab(tab){
 
 document.querySelectorAll(".tab-content").forEach(t=>{
@@ -244,21 +256,17 @@ function openDashboard(){
 window.location.href = "dashboard.html"
 }
 
-/* show dashboard icon if already logged in */
-
 window.onload = function(){
 
 const user = JSON.parse(localStorage.getItem("loggedInUser"))
 
 if(user){
-
 document.getElementById("dashboardIcon").style.display="block"
-
 }
 
 }
+
 </script>
 
 </body>
 </html>
-
