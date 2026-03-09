@@ -45,12 +45,9 @@ isAdmin:true
 
 localStorage.setItem("loggedInUser",JSON.stringify(admin))
 
-alert("Admin login successful")
-
-window.location.href="dashboard.html"
+loginSuccess()
 
 return
-
 }
 
 /* NORMAL LOGIN */
@@ -63,15 +60,29 @@ if(user){
 
 localStorage.setItem("loggedInUser",JSON.stringify(user))
 
-alert("Login successful")
-
-window.location.href="dashboard.html"
+loginSuccess()
 
 }else{
 
 alert("Invalid username or password")
 
 }
+
+}
+
+/* LOGIN SUCCESS */
+
+function loginSuccess(){
+
+alert("Login successful!")
+
+/* close login popup */
+
+document.getElementById("loginModal").style.display="none"
+
+/* show dashboard icon */
+
+document.getElementById("dashboardIcon").style.display="block"
 
 }
 
@@ -153,3 +164,5 @@ localStorage.setItem("warnings",text)
 alert("Warnings updated")
 
 }
+
+
