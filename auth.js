@@ -77,7 +77,23 @@ alert("Login successful!")
 
 document.getElementById("loginModal").style.display="none"
 
-document.getElementById("dashboardIcon").style.display="block"
+updateDashboardIcon()
+
+}
+
+function updateDashboardIcon(){
+
+const user = JSON.parse(localStorage.getItem("loggedInUser"))
+
+const icon = document.getElementById("dashboardIcon")
+
+if(icon){
+if(user){
+icon.style.display="block"
+}else{
+icon.style.display="none"
+}
+}
 
 }
 
