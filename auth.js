@@ -1,71 +1,66 @@
-// ADMIN ACCOUNT
-const ADMIN_USERNAME = "Cethin_admin<3";
-const ADMIN_PASSWORD = "IamTheCutestAdmin<3";
+const adminUser = "Cethin_1"
+const adminPass = "LestialxCethin2411"
 
+/* SIGNUP */
 
+document.getElementById("signupSubmit").onclick = () =>{
 
-// SIGN UP
-function signup(){
+const username = document.getElementById("signupUsername").value
+const password = document.getElementById("signupPassword").value
 
-const username = document.getElementById("signinUsername").value;
-const password = document.getElementById("signinPassword").value;
+let users = JSON.parse(localStorage.getItem("users")) || []
 
-if(username === "" || password === ""){
-alert("Please fill all fields");
-return;
-}
+users.push({
+username,
+password,
+isAdmin:false
+})
 
-const user = {
-username: username,
-password: password
-};
+localStorage.setItem("users",JSON.stringify(users))
 
-localStorage.setItem("user", JSON.stringify(user));
-
-alert("Account created! You can now log in.");
-
-showLogin();
+alert("Account created")
 
 }
 
+/* LOGIN */
 
+document.getElementById("loginSubmit").onclick = () =>{
 
-// LOGIN
-function login(){
+const username = document.getElementById("loginUsername").value
+const password = document.getElementById("loginPassword").value
 
-const username = document.getElementById("loginUsername").value;
-const password = document.getElementById("loginPassword").value;
+/* ADMIN LOGIN */
 
-const savedUser = JSON.parse(localStorage.getItem("user"));
+if(username === adminUser && password === adminPass){
 
+const admin = {
+username:adminUser,
+isAdmin:true
+}
 
-// ADMIN LOGIN
-if(username === ADMIN_USERNAME && password === ADMIN_PASSWORD){
+localStorage.setItem("loggedInUser",JSON.stringify(admin))
 
-localStorage.setItem("loggedInUser", JSON.stringify({
-username: ADMIN_USERNAME
-}));
+window.location.href="dashboard.html"
 
-alert("Admin login successful!");
-
-window.location.href = "homepage.html";
-return;
+return
 
 }
 
+/* NORMAL LOGIN */
 
-// NORMAL USER LOGIN
-if(savedUser && username === savedUser.username && password === savedUser.password){
+let users = JSON.parse(localStorage.getItem("users")) || []
 
-localStorage.setItem("loggedInUser", JSON.stringify(savedUser));
+let user = users.find(u => u.username === username && u.password === password)
 
-alert("Login successful!");
+if(user){
 
-window.location.href = "homepage.html";
+localStorage.setItem("loggedInUser",JSON.stringify(user))
+
+window.location.href="dashboard.html"
 
 }else{
 
-alert("Invalid username or password");
+alert("Invalid login")
 
 }
 
