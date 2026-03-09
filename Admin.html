@@ -68,12 +68,9 @@ Access denied. This page is for the administrator only.
 
 <script>
 
-const savedUser = JSON.parse(localStorage.getItem("user"));
+const user = JSON.parse(localStorage.getItem("loggedInUser"));
 
-const ADMIN_USERNAME = "Cethin_admin<3";
-const ADMIN_PASSWORD = "IamTheCutestAdmin<3";
-
-if(!savedUser || savedUser.username !== ADMIN_USERNAME || savedUser.password !== ADMIN_PASSWORD){
+if(!user || user.username !== "Cethin_admin<3"){
 
 document.getElementById("adminPanel").style.display="none";
 document.getElementById("blocked").style.display="block";
@@ -114,6 +111,5 @@ alert("Content saved!");
 }
 
 </script>
-
 </body>
 </html>
