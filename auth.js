@@ -65,3 +65,92 @@ alert("Invalid login")
 }
 
 }
+
+/* OPEN WINDOW */
+
+function openWindow(id){
+
+document.getElementById(id).style.display = "block"
+
+}
+
+/* CLOSE WINDOW */
+
+function closeWindow(id){
+
+document.getElementById(id).style.display = "none"
+
+}
+
+/* NOTES */
+
+function openNotes(){
+
+const user = JSON.parse(localStorage.getItem("loggedInUser"))
+
+if(!user){
+
+alert("Please login first")
+return
+
+}
+
+openWindow("notesWindow")
+
+let notes = localStorage.getItem("notes_"+user.username) || ""
+
+document.getElementById("notesText").value = notes
+
+}
+
+function saveNotes(){
+
+const user = JSON.parse(localStorage.getItem("loggedInUser"))
+
+const text = document.getElementById("notesText").value
+
+localStorage.setItem("notes_"+user.username,text)
+
+alert("Notes saved")
+
+}
+
+/* WARNINGS */
+
+function openWarnings(){
+
+openWindow("warningsWindow")
+
+let warnings = localStorage.getItem("warnings") || "No warnings"
+
+const user = JSON.parse(localStorage.getItem("loggedInUser"))
+
+const box = document.getElementById("warningsText")
+
+box.value = warnings
+
+/* ADMIN CHECK */
+
+if(user && user.isAdmin){
+
+box.readOnly = false
+document.getElementById("saveWarningsBtn").style.display = "block"
+
+}else{
+
+box.readOnly = true
+document.getElementById("saveWarningsBtn").style.display = "none"
+
+}
+
+}
+
+function saveWarnings(){
+
+const text = document.getElementById("warningsText").value
+
+localStorage.setItem("warnings",text)
+
+alert("Warnings updated")
+
+}
