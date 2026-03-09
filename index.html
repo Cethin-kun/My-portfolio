@@ -6,12 +6,11 @@
 <style>
 
 body{
-  background-image: url("assets/start screen/windows.jpg");
-  background-repeat:no-repeat;
-  background-position:center;
-  background-size:cover;
-  height:100vh;
-  margin:0;
+background-image:url("assets/start screen/windows.jpg");
+background-size:cover;
+background-position:center;
+height:100vh;
+margin:0;
 }
 
 button{
@@ -26,13 +25,13 @@ gap:20px;
 padding:20px;
 }
 
-/* MODAL */
+/* LOGIN MODAL */
 
 .modal{
 display:none;
 position:fixed;
-left:0;
 top:0;
+left:0;
 width:100%;
 height:100%;
 background:rgba(0,0,0,0.6);
@@ -106,21 +105,15 @@ color:white;
 padding:8px;
 display:flex;
 justify-content:space-between;
-cursor:move;
 }
 
 .window-content{
 padding:12px;
 }
 
-.window textarea{
+textarea{
 width:100%;
 height:150px;
-}
-
-.window button{
-margin-top:10px;
-padding:6px 10px;
 }
 
 </style>
@@ -131,12 +124,18 @@ padding:6px 10px;
 <div class="icons">
 
 <button onclick="openNotes()">
-<img style="width:100px;" src="assets/start screen/NotesIcon.png">
+<img width="100" src="assets/start screen/NotesIcon.png">
 </button>
 
 <button onclick="openWarnings()">
-<img style="width:100px;" src="assets/start screen/WarningsIcon.png">
+<img width="100" src="assets/start screen/WarningsIcon.png">
 </button>
+
+<button id="startBtn">
+<img width="100" src="assets/start screen/startIcon.png">
+</button>
+
+</div>
 
 <!-- NOTES WINDOW -->
 
@@ -155,7 +154,7 @@ padding:6px 10px;
 
 </div>
 </div>
-  
+
 <!-- WARNINGS WINDOW -->
 
 <div id="warningsWindow" class="window">
@@ -172,12 +171,6 @@ padding:6px 10px;
 <button id="saveWarningsBtn" onclick="saveWarnings()">Save</button>
 
 </div>
-</div>
-  
-<button id="startBtn">
-<img width="80" src="assets/start screen/startIcon.png">
-</button>
-
 </div>
 
 <!-- LOGIN MODAL -->
@@ -222,21 +215,15 @@ padding:6px 10px;
 
 <script>
 
-/* START BUTTON */
-
 const modal = document.getElementById("loginModal")
 
-document.getElementById("startBtn").onclick = () =>{
+document.getElementById("startBtn").onclick = ()=>{
 modal.style.display="flex"
 }
 
-/* CLOSE */
-
-document.querySelector(".close").onclick = () =>{
+document.querySelector(".close").onclick = ()=>{
 modal.style.display="none"
 }
-
-/* TAB SWITCH */
 
 function showTab(tab){
 
@@ -248,54 +235,7 @@ document.getElementById(tab).classList.add("active")
 
 }
 
-/* NOTES */
-
-function openNotes(){
-
-const user = JSON.parse(localStorage.getItem("loggedInUser"))
-
-if(!user){
-alert("Please login first")
-return
-}
-
-let notes = localStorage.getItem("notes_"+user.username) || "No notes yet"
-
-let newNotes = prompt("Your Notes:",notes)
-
-if(newNotes !== null){
-localStorage.setItem("notes_"+user.username,newNotes)
-}
-
-}
-
-/* WARNINGS */
-
-function openWarnings(){
-
-let warnings = localStorage.getItem("warnings") || "No warnings"
-
-const user = JSON.parse(localStorage.getItem("loggedInUser"))
-
-if(user && user.isAdmin){
-
-let newText = prompt("Edit warnings:",warnings)
-
-if(newText !== null){
-localStorage.setItem("warnings",newText)
-}
-
-}else{
-
-alert(warnings)
-
-}
-
-}
-
 </script>
 
 </body>
 </html>
-
-
