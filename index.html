@@ -146,6 +146,12 @@ height:150px;
 <img width="100" src="assets/start screen/dashboardIcon.png">
 </button>
 
+<button id="homeAppIcon" onclick="openHomeApp()" style="display:none;">
+    <img width="100" src="assets/start screen/homeIcon.png">
+</button>
+
+
+
 </div>
 
 <!-- NOTES WINDOW -->
@@ -272,8 +278,27 @@ icon.style.display="none"
 
 window.addEventListener("DOMContentLoaded", updateDashboardIcon)
 
+function goToHomepage() {
+    window.location.href = "homepage.html";
+}
+
+// Show Home App icon if user is logged in
+function updateHomeAppIcon() {
+    const user = JSON.parse(localStorage.getItem("loggedInUser"));
+    const icon = document.getElementById("homeAppIcon");
+    if (user) {
+        icon.style.display = "block";
+    } else {
+        icon.style.display = "none";
+    }
+}
+
+// Run on page load
+window.addEventListener("DOMContentLoaded", updateHomeAppIcon);
+
 </script>
 
 </body>
 </html>
+
 
