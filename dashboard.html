@@ -6,17 +6,37 @@
 <style>
 
 body{
-font-family:Arial;
-background:#111;
-color:white;
-text-align:center;
-padding-top:100px;
+  font-family: Arial;
+  background: #111;
+  color: white;
+  margin: 0;
 }
 
-button{
-padding:10px 20px;
-font-size:16px;
-cursor:pointer;
+.header{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 10px 20px;
+  background: #222;
+}
+
+.header span{
+  margin-right: 15px;
+  font-weight: bold;
+}
+
+.header button{
+  padding: 5px 10px;
+  cursor: pointer;
+  background: #f00;
+  border: none;
+  color: white;
+  border-radius: 4px;
+}
+
+.container{
+  text-align: center;
+  padding-top: 50px;
 }
 
 </style>
@@ -25,29 +45,36 @@ cursor:pointer;
 
 <body>
 
-<h1>Dashboard</h1>
+<div class="header">
+  <span id="usernameDisplay"></span>
+  <button onclick="logout()">Logout</button>
+</div>
 
-<p id="welcome"></p>
-
-<button onclick="logout()">Logout</button>
+<div class="container">
+  <h1>Dashboard</h1>
+  <p id="welcome"></p>
+</div>
 
 <script>
 
+// Get logged in user
 const user = JSON.parse(localStorage.getItem("loggedInUser"))
 
 if(!user){
-window.location.href="index.html"
+  window.location.href="index.html"
 }
 
+// Show username on top right
+document.getElementById("usernameDisplay").innerText = user.username
+
+// Show welcome message
 document.getElementById("welcome").innerText =
-"Welcome " + user.username
+  "Welcome " + user.username + " to the dashboard!"
 
+// Logout function
 function logout(){
-
-localStorage.removeItem("loggedInUser")
-
-window.location.href="index.html"
-
+  localStorage.removeItem("loggedInUser")
+  window.location.href="index.html"
 }
 
 </script>
