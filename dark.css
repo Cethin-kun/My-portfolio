@@ -138,6 +138,8 @@ input{
     margin-top:15px;
     opacity:0;
     transform:translateX(20px);
+    background-color:black;
+    color:white;
 }
 
 /* active tab */
@@ -156,3 +158,4 @@ input{
         transform:translateX(0);
     }
 }
+
