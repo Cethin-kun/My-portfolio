@@ -249,6 +249,13 @@ input{
 <script src="modal.js"></script>
 <script src="auth.js"></script>
 <script>
+  function openNotes(){
+
+const notes = localStorage.getItem("notesContent") || "No notes yet.";
+
+alert(notes);
+
+}
 function openAdmin(){
 
 window.location.href = "admin.html";
@@ -281,6 +288,7 @@ showAdminButton();
 </body>
 
 </html>
+
 
 
 
