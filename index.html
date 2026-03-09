@@ -1,28 +1,38 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Desktop</title>
-     <link id="theme-link" rel="stylesheet" href="light.css">
-     </head>
+
+<head>
+<title>Desktop</title>
+
+<link id="theme-link" rel="stylesheet" href="light.css">
+
+</head>
+
 <body>
-    <div class="iCons">
-        <button type="button" onclick="alert('Notes opened!')">
-         <img style="width: 100px; height: auto;" src="assets/start screen/NotesIcon.png" alt="Description of the button's action">
-        </button>
-        
-        <button type="button" onclick="alert('Warnings opened!')">
-         <img style="width: 100px; height: auto;" src="assets/start screen/WarningsIcon.png" alt="Description of the button's action">
-        </button>
-       
-        <button type="button" id="startBtn">
-         <img style="width: 100px; height: auto;" src="assets/start screen/startIcon.png" alt="Description of the button's action">
-        </button>
-    </div>
-        <div class="hotbar">
-          <img id="hotbar" src="assets/start screen/hotbar.png" alt="Description of the button's action">
-        </div>
+
+<div class="iCons">
+
+<button>
+<img style="width:100px;" src="assets/start screen/NotesIcon.png">
+</button>
+
+<button>
+<img style="width:100px;" src="assets/start screen/WarningsIcon.png">
+</button>
+
+<button id="startBtn">
+<img style="width:100px;" src="assets/start screen/startIcon.png">
+</button>
+
+</div>
 
 
+<div class="hotbar">
+<img src="assets/start screen/hotbar.png">
+</div>
+
+
+<!-- LOGIN MODAL -->
 
 <div id="loginModal" class="modal">
 
@@ -36,101 +46,47 @@
 <button onclick="toggleTheme()">Toggle Theme</button>
 </div>
 
+
+<!-- LOGIN -->
+
 <div id="login" class="tab-content">
+
 <h3>Login</h3>
-<input type="text" placeholder="Username">
-<input type="password" placeholder="Password">
-<button class="submit-btn">Login</button>
+
+<input id="loginUsername" type="text" placeholder="Username">
+
+<input id="loginPassword" type="password" placeholder="Password">
+
+<button id="loginSubmit" class="submit-btn">Login</button>
+
 </div>
+
+
+<!-- SIGN UP -->
 
 <div id="signup" class="tab-content">
+
 <h3>Sign Up</h3>
-<input type="text" placeholder="Username">
-<input type="email" placeholder="Email">
-<input type="password" placeholder="Password">
-<button class="submit-btn">Create Account</button>
-</div>
+
+<input id="signupUsername" type="text" placeholder="Username">
+
+<input id="signupEmail" type="email" placeholder="Email">
+
+<input id="signupPassword" type="password" placeholder="Password">
+
+<button id="signupSubmit" class="submit-btn">Create Account</button>
 
 </div>
+
+</div>
 </div>
 
-    <script>
 
-const modal = document.getElementById("loginModal");
-const startBtn = document.getElementById("startBtn");
-const closeBtn = document.querySelector(".close");
 
-startBtn.onclick = () => {
-    modal.style.display = "flex";
-
-    setTimeout(() => {
-        modal.classList.add("show");
-    },10);
-
-    showTab("login");
-}
-
-closeBtn.onclick = closeModal;
-
-window.onclick = function(event){
-    if(event.target === modal){
-        closeModal();
-    }
-}
-
-function closeModal(){
-    modal.classList.remove("show");
-
-    setTimeout(()=>{
-        modal.style.display="none";
-    },300);
-}
-
-function showTab(tab){
-
-    const tabs = document.querySelectorAll(".tab-content");
-
-    tabs.forEach(t => {
-        t.classList.remove("active");
-    });
-
-    const selectedTab = document.getElementById(tab);
-
-    if(selectedTab){
-        selectedTab.classList.add("active");
-    }
-
-}
-
-</script>
-
+<script src="modal.js"></script>
 <script src="theme.js"></script>
+<script src="auth.js"></script>
 
 </body>
+
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
