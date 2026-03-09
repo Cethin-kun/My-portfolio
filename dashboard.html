@@ -2,21 +2,139 @@
 <html>
 <head>
 <title>Dashboard</title>
+
+<style>
+
+body{
+font-family:Arial;
+margin:0;
+}
+
+/* TOP BAR */
+
+.topbar{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:50px;
+background:#222;
+color:white;
+display:flex;
+justify-content:flex-end;
+align-items:center;
+padding-right:20px;
+}
+
+/* USER MENU */
+
+.user-menu{
+position:relative;
+cursor:pointer;
+}
+
+.username{
+padding:8px 12px;
+background:#444;
+border-radius:6px;
+}
+
+/* DROPDOWN */
+
+.dropdown{
+display:none;
+position:absolute;
+right:0;
+top:40px;
+background:white;
+color:black;
+border:1px solid #ccc;
+border-radius:6px;
+min-width:120px;
+box-shadow:0 4px 10px rgba(0,0,0,0.3);
+}
+
+.dropdown button{
+width:100%;
+border:none;
+background:white;
+padding:10px;
+cursor:pointer;
+text-align:left;
+}
+
+.dropdown button:hover{
+background:#eee;
+}
+
+/* MAIN CONTENT */
+
+.content{
+margin-top:80px;
+padding:20px;
+}
+
+textarea{
+width:400px;
+height:200px;
+}
+
+</style>
 </head>
 
 <body>
 
+<!-- TOP BAR -->
+
+<div class="topbar">
+
+<div class="user-menu" onclick="toggleMenu()">
+
+<div class="username" id="usernameDisplay">
+User
+</div>
+
+<div class="dropdown" id="userDropdown">
+
+<button onclick="logout()">Logout</button>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- MAIN CONTENT -->
+
+<div class="content">
+
 <h1 id="title">Welcome</h1>
 
-<textarea id="textArea" style="width:400px;height:200px;"></textarea>
+<textarea id="textArea"></textarea>
 
 <br><br>
 
 <button onclick="save()">Save</button>
 
+</div>
+
 <script>
 
+/* GET USER */
+
 const user = JSON.parse(localStorage.getItem("loggedInUser"))
+
+if(!user){
+
+window.location.href="index.html"
+
+}
+
+/* SHOW USERNAME */
+
+document.getElementById("usernameDisplay").innerText = user.username
+
+/* LOAD TEXT */
 
 let content = localStorage.getItem("dashboardText") || "Welcome to the system."
 
@@ -43,6 +161,26 @@ localStorage.setItem("dashboardText",text)
 alert("Saved")
 
 }
+
+}
+
+/* USER MENU */
+
+function toggleMenu(){
+
+const menu = document.getElementById("userDropdown")
+
+menu.style.display = menu.style.display === "block" ? "none" : "block"
+
+}
+
+/* LOGOUT */
+
+function logout(){
+
+localStorage.removeItem("loggedInUser")
+
+window.location.href = "index.html"
 
 }
 
