@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Admin Panel</title>
+<style>
+body {
+  background:#111;
+  color:white;
+  font-family:sans-serif;
+  padding:40px;
+  text-align:center;
+}
+
+textarea {
+  width:90%;
+  height:150px;
+  margin:10px 0;
+  background:#222;
+  color:white;
+  border:1px solid #555;
+  padding:10px;
+  resize:none;
+}
+
+button {
+  padding:10px 20px;
+  background:#444;
+  color:white;
+  border:none;
+  cursor:pointer;
+  margin-top:10px;
+}
+
+#blocked {
+  display:none;
+  color:red;
+  font-size:22px;
+  margin-top:50px;
+}
+
+h1 {
+  color:#ff5555;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Admin Panel</h1>
+
+<div id="blocked">
+Access denied. This page is for the administrator only.
+</div>
+
+<div id="adminPanel">
+
+<h3>Notes Content</h3>
+<textarea id="notesBox" placeholder="Write notes here..."></textarea>
+
+<h3>Warnings Content</h3>
+<textarea id="warningsBox" placeholder="Write warnings here..."></textarea>
+
+<br>
+<button onclick="saveContent()">Save Changes</button>
+
+</div>
+
+<script>
+// Check logged-in user
+const user = JSON.parse(localStorage.getItem("loggedInUser"));
+
+// Only allow admin
+if(!user || user.username !== "Cethin_admin<3"){
+    document.getElementById("adminPanel").style.display = "none";
+    document.getElementById("blocked").style.display = "block";
+} else {
+    loadContent();
+}
+
+// Load saved content from localStorage
+function loadContent(){
+    const notes = localStorage.getItem("notesContent");
+    const warnings = localStorage.getItem("warningsContent");
+
+    if(notes) document.getElementById("notesBox").value = notes;
+    if(warnings) document.getElementById("warningsBox").value = warnings;
+}
+
+// Save content to localStorage
+function saveContent(){
+    const notes = document.getElementById("notesBox").value;
+    const warnings = document.getElementById("warningsBox").value;
+
+    localStorage.setItem("notesContent", notes);
+    localStorage.setItem("warningsContent", warnings);
+
+    alert("Changes saved!");
+
+    // Optional: update desktop Notes & Warnings immediately if open
+    console.log("Admin changes updated.");
+}
+</script>
+
+</body>
+</html>
