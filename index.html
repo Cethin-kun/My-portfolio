@@ -238,14 +238,46 @@ input{
 </div>
 </div>
 
-
+<button id="adminBtn" onclick="openAdmin()" style="display:none;">
+<img style="width:100px;" src="assets/start screen/adminIcon.png">
+</button>
 
 <script src="modal.js"></script>
 <script src="auth.js"></script>
+<script>
+function openAdmin(){
+
+window.location.href = "admin.html";
+
+}
+
+
+function showAdminButton(){
+
+const user = JSON.parse(localStorage.getItem("loggedInUser"));
+
+if(user && user.username === "Cethin_admin<3"){
+
+document.getElementById("adminBtn").style.display = "block";
+
+}
+
+}
+
+
+/* Check if admin is already logged in */
+
+window.addEventListener("load", function(){
+
+showAdminButton();
+
+});
+</script>
 
 </body>
 
 </html>
+
 
 
 
