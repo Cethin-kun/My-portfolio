@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Dashboard</title>
+</head>
+
+<body>
+
+<h1 id="title">Welcome</h1>
+
+<textarea id="textArea" style="width:400px;height:200px;"></textarea>
+
+<br><br>
+
+<button onclick="save()">Save</button>
+
+<script>
+
+const user = JSON.parse(localStorage.getItem("loggedInUser"))
+
+let content = localStorage.getItem("dashboardText") || "Welcome to the system."
+
+document.getElementById("textArea").value = content
+
+/* NON ADMIN VIEW ONLY */
+
+if(!user.isAdmin){
+
+document.getElementById("textArea").readOnly = true
+
+}
+
+/* SAVE */
+
+function save(){
+
+if(user.isAdmin){
+
+const text = document.getElementById("textArea").value
+
+localStorage.setItem("dashboardText",text)
+
+alert("Saved")
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
