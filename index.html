@@ -256,17 +256,24 @@ function openDashboard(){
 window.location.href = "dashboard.html"
 }
 
-window.onload = function(){
+function updateDashboardIcon(){
 
 const user = JSON.parse(localStorage.getItem("loggedInUser"))
 
+const icon = document.getElementById("dashboardIcon")
+
 if(user){
-document.getElementById("dashboardIcon").style.display="block"
+icon.style.display="block"
+}else{
+icon.style.display="none"
 }
 
 }
+
+window.addEventListener("DOMContentLoaded", updateDashboardIcon)
 
 </script>
 
 </body>
 </html>
+
