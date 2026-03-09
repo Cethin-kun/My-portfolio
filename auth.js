@@ -3,10 +3,15 @@ const adminPass = "LestialxCethin2411"
 
 /* SIGNUP */
 
-document.getElementById("signupSubmit").onclick = () =>{
+document.getElementById("signupSubmit").onclick = () => {
 
 const username = document.getElementById("signupUsername").value
 const password = document.getElementById("signupPassword").value
+
+if(!username || !password){
+alert("Enter username and password")
+return
+}
 
 let users = JSON.parse(localStorage.getItem("users")) || []
 
@@ -18,13 +23,13 @@ isAdmin:false
 
 localStorage.setItem("users",JSON.stringify(users))
 
-alert("Account created")
+alert("Account created successfully!")
 
 }
 
 /* LOGIN */
 
-document.getElementById("loginSubmit").onclick = () =>{
+document.getElementById("loginSubmit").onclick = () => {
 
 const username = document.getElementById("loginUsername").value
 const password = document.getElementById("loginPassword").value
@@ -39,6 +44,8 @@ isAdmin:true
 }
 
 localStorage.setItem("loggedInUser",JSON.stringify(admin))
+
+alert("Admin login successful")
 
 window.location.href="dashboard.html"
 
@@ -56,30 +63,26 @@ if(user){
 
 localStorage.setItem("loggedInUser",JSON.stringify(user))
 
+alert("Login successful")
+
 window.location.href="dashboard.html"
 
 }else{
 
-alert("Invalid login")
+alert("Invalid username or password")
 
 }
 
 }
 
-/* OPEN WINDOW */
+/* WINDOW SYSTEM */
 
 function openWindow(id){
-
-document.getElementById(id).style.display = "block"
-
+document.getElementById(id).style.display="block"
 }
 
-/* CLOSE WINDOW */
-
 function closeWindow(id){
-
-document.getElementById(id).style.display = "none"
-
+document.getElementById(id).style.display="none"
 }
 
 /* NOTES */
@@ -89,10 +92,8 @@ function openNotes(){
 const user = JSON.parse(localStorage.getItem("loggedInUser"))
 
 if(!user){
-
 alert("Please login first")
 return
-
 }
 
 openWindow("notesWindow")
@@ -129,17 +130,15 @@ const box = document.getElementById("warningsText")
 
 box.value = warnings
 
-/* ADMIN CHECK */
-
 if(user && user.isAdmin){
 
-box.readOnly = false
-document.getElementById("saveWarningsBtn").style.display = "block"
+box.readOnly=false
+document.getElementById("saveWarningsBtn").style.display="block"
 
 }else{
 
-box.readOnly = true
-document.getElementById("saveWarningsBtn").style.display = "none"
+box.readOnly=true
+document.getElementById("saveWarningsBtn").style.display="none"
 
 }
 
