@@ -26,8 +26,6 @@ align-items:center;
 padding-right:20px;
 }
 
-/* USER MENU */
-
 .user-menu{
 position:relative;
 cursor:pointer;
@@ -67,16 +65,26 @@ text-align:left;
 background:#eee;
 }
 
-/* MAIN CONTENT */
+/* CONTENT */
 
 .content{
 margin-top:80px;
 padding:20px;
 }
 
-textarea{
+/* ADMIN TEXTAREA */
+
+#adminEditor{
 width:400px;
 height:200px;
+}
+
+/* USER PARAGRAPH */
+
+#userView{
+max-width:500px;
+font-size:16px;
+line-height:1.5;
 }
 
 </style>
@@ -90,9 +98,7 @@ height:200px;
 
 <div class="user-menu" onclick="toggleMenu()">
 
-<div class="username" id="usernameDisplay">
-User
-</div>
+<div class="username" id="usernameDisplay"></div>
 
 <div class="dropdown" id="userDropdown">
 
@@ -108,13 +114,17 @@ User
 
 <div class="content">
 
-<h1 id="title">Welcome</h1>
+<h1>Welcome</h1>
 
-<textarea id="textArea"></textarea>
+<!-- ADMIN EDITOR -->
 
+<textarea id="adminEditor"></textarea>
 <br><br>
+<button id="saveBtn" onclick="save()">Save</button>
 
-<button onclick="save()">Save</button>
+<!-- USER VIEW -->
+
+<p id="userView"></p>
 
 </div>
 
@@ -125,9 +135,7 @@ User
 const user = JSON.parse(localStorage.getItem("loggedInUser"))
 
 if(!user){
-
 window.location.href="index.html"
-
 }
 
 /* SHOW USERNAME */
@@ -138,13 +146,24 @@ document.getElementById("usernameDisplay").innerText = user.username
 
 let content = localStorage.getItem("dashboardText") || "Welcome to the system."
 
-document.getElementById("textArea").value = content
+/* ADMIN VIEW */
 
-/* NON ADMIN VIEW ONLY */
+if(user.isAdmin){
 
-if(!user.isAdmin){
+document.getElementById("adminEditor").value = content
 
-document.getElementById("textArea").readOnly = true
+document.getElementById("userView").style.display = "none"
+
+}
+
+/* USER VIEW */
+
+else{
+
+document.getElementById("adminEditor").style.display = "none"
+document.getElementById("saveBtn").style.display = "none"
+
+document.getElementById("userView").innerText = content
 
 }
 
@@ -152,9 +171,7 @@ document.getElementById("textArea").readOnly = true
 
 function save(){
 
-if(user.isAdmin){
-
-const text = document.getElementById("textArea").value
+const text = document.getElementById("adminEditor").value
 
 localStorage.setItem("dashboardText",text)
 
@@ -162,9 +179,7 @@ alert("Saved")
 
 }
 
-}
-
-/* USER MENU */
+/* MENU */
 
 function toggleMenu(){
 
@@ -180,7 +195,7 @@ function logout(){
 
 localStorage.removeItem("loggedInUser")
 
-window.location.href = "index.html"
+window.location.href="index.html"
 
 }
 
