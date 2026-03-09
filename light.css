@@ -39,9 +39,15 @@ a {
  }
 
  .hotbar img {
+  position: absolute;
   width: 100%;
   height: 100%;
   object-fit: cover; /* This scales the image to cover the entire container while maintaining aspect ratio and cropping excess */
+  bottom: 0px;
+ }
+
+h3 {
+  color:red;
 }
 
 /* Start button */
@@ -150,3 +156,4 @@ input{
         transform:translateX(0);
     }
 }
+
