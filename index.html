@@ -135,6 +135,11 @@ height:150px;
 <img width="100" src="assets/start screen/startIcon.png">
 </button>
 
+
+<button id="dashboardIcon" onclick="openDashboard()" style="display:none;">
+<img width="100" src="assets/start screen/dashboardIcon.png">
+</button>
+  
 </div>
 
 <!-- NOTES WINDOW -->
@@ -235,7 +240,25 @@ document.getElementById(tab).classList.add("active")
 
 }
 
+function openDashboard(){
+window.location.href = "dashboard.html"
+}
+
+/* show dashboard icon if already logged in */
+
+window.onload = function(){
+
+const user = JSON.parse(localStorage.getItem("loggedInUser"))
+
+if(user){
+
+document.getElementById("dashboardIcon").style.display="block"
+
+}
+
+}
 </script>
 
 </body>
 </html>
+
