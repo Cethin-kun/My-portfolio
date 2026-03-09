@@ -135,15 +135,15 @@ function saveText(){
   }
 }
 
-// Logout function
+// Logout function - clears session
 function logout(){
   localStorage.removeItem("loggedInUser")
   window.location.href="index.html"
 }
 
-// Close dashboard function (return to desktop)
+// Close dashboard - goes back to desktop without logging out
 function closeDashboard(){
-  window.location.href="index.html"  // or redirect to your desktop page
+  window.location.href="index.html" // desktop page
 }
 
 </script>
