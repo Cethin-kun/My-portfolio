@@ -15,6 +15,11 @@ return
 
 let users = JSON.parse(localStorage.getItem("users")) || []
 
+if(users.find(u => u.username === username)){
+alert("Username already exists")
+return
+}
+
 users.push({
 username,
 password,
@@ -34,8 +39,6 @@ document.getElementById("loginSubmit").onclick = () => {
 const username = document.getElementById("loginUsername").value
 const password = document.getElementById("loginPassword").value
 
-/* ADMIN LOGIN */
-
 if(username === adminUser && password === adminPass){
 
 const admin = {
@@ -49,8 +52,6 @@ loginSuccess()
 
 return
 }
-
-/* NORMAL LOGIN */
 
 let users = JSON.parse(localStorage.getItem("users")) || []
 
@@ -70,17 +71,11 @@ alert("Invalid username or password")
 
 }
 
-/* LOGIN SUCCESS */
-
 function loginSuccess(){
 
 alert("Login successful!")
 
-/* close login popup */
-
 document.getElementById("loginModal").style.display="none"
-
-/* show dashboard icon */
 
 document.getElementById("dashboardIcon").style.display="block"
 
@@ -118,6 +113,11 @@ document.getElementById("notesText").value = notes
 function saveNotes(){
 
 const user = JSON.parse(localStorage.getItem("loggedInUser"))
+
+if(!user){
+alert("Login required")
+return
+}
 
 const text = document.getElementById("notesText").value
 
@@ -164,5 +164,3 @@ localStorage.setItem("warnings",text)
 alert("Warnings updated")
 
 }
-
-
