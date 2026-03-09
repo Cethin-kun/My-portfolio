@@ -6,121 +6,121 @@
 <style>
 
 body{
-background-image:url("assets/start screen/windows.jpg");
-background-size:cover;
-background-position:center;
-height:100vh;
-margin:0;
-font-family:Arial;
+    background-image:url("assets/start screen/windows.jpg");
+    background-size:cover;
+    background-position:center;
+    height:100vh;
+    margin:0;
+    font-family:Arial;
 }
 
 button{
-background:transparent;
-border:none;
-cursor:pointer;
+    background:transparent;
+    border:none;
+    cursor:pointer;
 }
 
 .icons{
-display:flex;
-gap:20px;
-padding:20px;
+    display:flex;
+    gap:20px;
+    padding:20px;
 }
 
 /* LOGIN MODAL */
 
 .modal{
-display:none;
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,0.6);
-justify-content:center;
-align-items:center;
+    display:none;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.6);
+    justify-content:center;
+    align-items:center;
 }
 
 .modal-content{
-background:white;
-padding:25px;
-border-radius:10px;
-width:320px;
-animation:pop .2s ease;
+    background:white;
+    padding:25px;
+    border-radius:10px;
+    width:320px;
+    animation:pop .2s ease;
 }
 
 @keyframes pop{
-from{transform:scale(.8);opacity:0}
-to{transform:scale(1);opacity:1}
+    from{transform:scale(.8);opacity:0}
+    to{transform:scale(1);opacity:1}
 }
 
 .tabs{
-display:flex;
-gap:5px;
+    display:flex;
+    gap:5px;
 }
 
 .tabs button{
-flex:1;
-padding:8px;
-background:#ddd;
+    flex:1;
+    padding:8px;
+    background:#ddd;
 }
 
 .tab-content{
-display:none;
-margin-top:15px;
+    display:none;
+    margin-top:15px;
 }
 
 .tab-content.active{
-display:block;
+    display:block;
 }
 
 input{
-width:100%;
-padding:8px;
-margin:6px 0;
+    width:100%;
+    padding:8px;
+    margin:6px 0;
 }
 
 .submit-btn{
-width:100%;
-padding:10px;
-background:#333;
-color:white;
+    width:100%;
+    padding:10px;
+    background:#333;
+    color:white;
 }
 
 .close{
-float:right;
-cursor:pointer;
-font-size:20px;
+    float:right;
+    cursor:pointer;
+    font-size:20px;
 }
 
 /* APP WINDOWS */
 
 .window{
-position:fixed;
-top:120px;
-left:120px;
-width:400px;
-background:white;
-border:2px solid black;
-border-radius:6px;
-display:none;
-box-shadow:0 0 10px rgba(0,0,0,0.6);
+    position:fixed;
+    top:120px;
+    left:120px;
+    width:400px;
+    background:white;
+    border:2px solid black;
+    border-radius:6px;
+    display:none;
+    box-shadow:0 0 10px rgba(0,0,0,0.6);
 }
 
 .window-header{
-background:#333;
-color:white;
-padding:8px;
-display:flex;
-justify-content:space-between;
+    background:#333;
+    color:white;
+    padding:8px;
+    display:flex;
+    justify-content:space-between;
 }
 
 .window-content{
-padding:12px;
+    padding:12px;
 }
 
 textarea{
-width:100%;
-height:150px;
+    width:100%;
+    height:150px;
 }
 
 </style>
@@ -130,175 +130,143 @@ height:150px;
 
 <div class="icons">
 
-<button onclick="openNotes()">
-<img width="100" src="assets/start screen/NotesIcon.png">
-</button>
+    <button onclick="openNotes()">
+        <img width="100" src="assets/start screen/NotesIcon.png">
+    </button>
 
-<button onclick="openWarnings()">
-<img width="100" src="assets/start screen/WarningsIcon.png">
-</button>
+    <button onclick="openWarnings()">
+        <img width="100" src="assets/start screen/WarningsIcon.png">
+    </button>
 
-<button id="startBtn">
-<img width="100" src="assets/start screen/startIcon.png">
-</button>
+    <button id="startBtn">
+        <img width="100" src="assets/start screen/startIcon.png">
+    </button>
 
-<button id="dashboardIcon" onclick="openDashboard()" style="display:none;">
-<img width="100" src="assets/start screen/dashboardIcon.png">
-</button>
+    <button id="dashboardIcon" onclick="openDashboard()" style="display:none;">
+        <img width="100" src="assets/start screen/dashboardIcon.png">
+    </button>
 
-<button id="homeAppIcon" onclick="openHomeApp()" style="display:none;">
-    <img width="100" src="assets/start screen/homeIcon.png">
-</button>
-
-
+    <button id="homeAppIcon" onclick="goToHomepage()" style="display:none;">
+        <img width="100" src="assets/start screen/homeIcon.png">
+    </button>
 
 </div>
 
 <!-- NOTES WINDOW -->
-
 <div id="notesWindow" class="window">
-
-<div class="window-header">
-<span>Notes</span>
-<button onclick="closeWindow('notesWindow')">X</button>
-</div>
-
-<div class="window-content">
-
-<textarea id="notesText"></textarea>
-
-<button onclick="saveNotes()">Save Notes</button>
-
-</div>
+    <div class="window-header">
+        <span>Notes</span>
+        <button onclick="closeWindow('notesWindow')">X</button>
+    </div>
+    <div class="window-content">
+        <textarea id="notesText"></textarea>
+        <button onclick="saveNotes()">Save Notes</button>
+    </div>
 </div>
 
 <!-- WARNINGS WINDOW -->
-
 <div id="warningsWindow" class="window">
-
-<div class="window-header">
-<span>Warnings</span>
-<button onclick="closeWindow('warningsWindow')">X</button>
-</div>
-
-<div class="window-content">
-
-<textarea id="warningsText"></textarea>
-
-<button id="saveWarningsBtn" onclick="saveWarnings()">Save</button>
-
-</div>
+    <div class="window-header">
+        <span>Warnings</span>
+        <button onclick="closeWindow('warningsWindow')">X</button>
+    </div>
+    <div class="window-content">
+        <textarea id="warningsText"></textarea>
+        <button id="saveWarningsBtn" onclick="saveWarnings()">Save</button>
+    </div>
 </div>
 
 <!-- LOGIN MODAL -->
-
 <div id="loginModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
 
-<div class="modal-content">
+        <div class="tabs">
+            <button onclick="showTab('login')">Login</button>
+            <button onclick="showTab('signup')">Sign Up</button>
+        </div>
 
-<span class="close">&times;</span>
+        <div id="login" class="tab-content active">
+            <h3>Login</h3>
+            <input id="loginUsername" placeholder="Username">
+            <input id="loginPassword" type="password" placeholder="Password">
+            <button id="loginSubmit" class="submit-btn">Login</button>
+        </div>
 
-<div class="tabs">
-<button onclick="showTab('login')">Login</button>
-<button onclick="showTab('signup')">Sign Up</button>
-</div>
+        <div id="signup" class="tab-content">
+            <h3>Sign Up</h3>
+            <input id="signupUsername" placeholder="Username">
+            <input id="signupPassword" type="password" placeholder="Password">
+            <button id="signupSubmit" class="submit-btn">Create Account</button>
+        </div>
 
-<div id="login" class="tab-content active">
-
-<h3>Login</h3>
-
-<input id="loginUsername" placeholder="Username">
-<input id="loginPassword" type="password" placeholder="Password">
-
-<button id="loginSubmit" class="submit-btn">Login</button>
-
-</div>
-
-<div id="signup" class="tab-content">
-
-<h3>Sign Up</h3>
-
-<input id="signupUsername" placeholder="Username">
-<input id="signupPassword" type="password" placeholder="Password">
-
-<button id="signupSubmit" class="submit-btn">Create Account</button>
-
-</div>
-
-</div>
+    </div>
 </div>
 
 <script src="auth.js"></script>
 
 <script>
 
-const modal = document.getElementById("loginModal")
+// OPEN LOGIN MODAL
+const modal = document.getElementById("loginModal");
 
 document.getElementById("startBtn").onclick = ()=>{
-modal.style.display="flex"
+    modal.style.display="flex";
 }
 
 document.querySelector(".close").onclick = ()=>{
-modal.style.display="none"
+    modal.style.display="none";
 }
 
 window.onclick = function(e){
-if(e.target === modal){
-modal.style.display="none"
-}
-}
-
-function showTab(tab){
-
-document.querySelectorAll(".tab-content").forEach(t=>{
-t.classList.remove("active")
-})
-
-document.getElementById(tab).classList.add("active")
-
-}
-
-function openDashboard(){
-window.location.href = "dashboard.html"
-}
-
-function updateDashboardIcon(){
-
-const user = JSON.parse(localStorage.getItem("loggedInUser"))
-
-const icon = document.getElementById("dashboardIcon")
-
-if(user){
-icon.style.display="block"
-}else{
-icon.style.display="none"
-}
-
-}
-
-window.addEventListener("DOMContentLoaded", updateDashboardIcon)
-
-function goToHomepage() {
-    window.location.href = "homepage.html";
-}
-
-// Show Home App icon if user is logged in
-function updateHomeAppIcon() {
-    const user = JSON.parse(localStorage.getItem("loggedInUser"));
-    const icon = document.getElementById("homeAppIcon");
-    if (user) {
-        icon.style.display = "block";
-    } else {
-        icon.style.display = "none";
+    if(e.target === modal){
+        modal.style.display="none";
     }
 }
 
-// Run on page load
-window.addEventListener("DOMContentLoaded", updateHomeAppIcon);
+// SWITCH TABS
+function showTab(tab){
+    document.querySelectorAll(".tab-content").forEach(t=>{
+        t.classList.remove("active");
+    })
+    document.getElementById(tab).classList.add("active");
+}
+
+// OPEN DASHBOARD
+function openDashboard(){
+    window.location.href = "dashboard.html";
+}
+
+// OPEN NOTES / WARNINGS
+function openNotes(){ document.getElementById("notesWindow").style.display="block"; }
+function openWarnings(){ document.getElementById("warningsWindow").style.display="block"; }
+function closeWindow(id){ document.getElementById(id).style.display="none"; }
+
+// GO TO HOMEPAGE
+function goToHomepage(){
+    window.location.href = "homepage.html";
+}
+
+// SHOW ICONS BASED ON LOGIN
+function updateDashboardIcon(){
+    const user = JSON.parse(localStorage.getItem("loggedInUser"));
+    const icon = document.getElementById("dashboardIcon");
+    icon.style.display = user ? "block" : "none";
+}
+
+function updateHomeAppIcon(){
+    const user = JSON.parse(localStorage.getItem("loggedInUser"));
+    const icon = document.getElementById("homeAppIcon");
+    icon.style.display = user ? "block" : "none";
+}
+
+// RUN BOTH ON PAGE LOAD
+window.addEventListener("DOMContentLoaded", () => {
+    updateDashboardIcon();
+    updateHomeAppIcon();
+});
 
 </script>
 
 </body>
 </html>
-
-
