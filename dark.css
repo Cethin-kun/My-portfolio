@@ -1,5 +1,4 @@
-     <style>
-        body {
+body {
   background-image: url("assets/start screen/windows.jg");
   background-repeat: no-repeat;
   background-position: center center;
@@ -151,3 +150,4 @@ input{
         transform:translateX(0);
     }
 }
+
