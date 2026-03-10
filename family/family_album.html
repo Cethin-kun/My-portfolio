@@ -1,27 +1,151 @@
 <!DOCTYPE html>
-<html>
-<head><title>Family Album</title></head>
-<body style="background-color:lavender;">
-<h1 style="font-family:Impact; color:#9E7AFF;"> FAMILY (°ㅁ°)!!<h1>
-<br>
-<img src="2.jpg" height="300">
-<img src="3.jpg" height="300">
-<img src="7.jpg" height="300">
-<img src="9.jpg" height="300">
-<img src="10.jpg" height="300">
-<img src="12.jpg" height="300">
-<img src="13.jpg" height="300">
-<img src="14.jpg" height="300">
-<img src="15.jpg" height="300">
-<img src="16.jpg" height="300">
-<br>
-<img src="1.jpg" height="300">
-<img src="4.jpg" height="300">
-<img src="5.jpg" height="300">
-<img src="6.jpg" height="300">
-<img src="11.png" height="300">
-<img src="8.jpg" height="300">
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Family Album</title>
+<style>
+  body {
+    background-color: #9E7AFF; /* medium purple */
+    font-family: 'Impact', sans-serif;
+    color: #E6E6FA; /* lavender */
+    margin: 30px;
+  }
+
+  h1 {
+    color: #E6E6FA; /* lavender */
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .photo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(180px,1fr));
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto 40px;
+  }
+
+  .photo-grid img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(230, 230, 250, 0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+  }
+
+  .photo-grid img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(230, 230, 250, 0.9);
+  }
+
+  /* Lightbox styles */
+  #lightbox-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(158, 122, 255, 0.9);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    cursor: zoom-out;
+  }
+
+  #lightbox-overlay img {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 15px;
+    box-shadow: 0 0 30px #E6E6FA;
+  }
+
+  /* Close button */
+  #lightbox-close {
+    position: fixed;
+    top: 25px;
+    right: 30px;
+    font-size: 36px;
+    color: #E6E6FA;
+    font-weight: bold;
+    cursor: pointer;
+    user-select: none;
+    z-index: 10000;
+    transition: color 0.3s ease;
+  }
+
+  #lightbox-close:hover {
+    color: #ffffff;
+  }
+</style>
+</head>
+<body>
+
+<h1>FAMILY (°ㅁ°)!!</h1>
+
+<div class="photo-grid">
+  <img src="2.jpg" alt="Family photo 2" />
+  <img src="3.jpg" alt="Family photo 3" />
+  <img src="7.jpg" alt="Family photo 7" />
+  <img src="9.jpg" alt="Family photo 9" />
+  <img src="10.jpg" alt="Family photo 10" />
+  <img src="12.jpg" alt="Family photo 12" />
+  <img src="13.jpg" alt="Family photo 13" />
+  <img src="14.jpg" alt="Family photo 14" />
+  <img src="15.jpg" alt="Family photo 15" />
+  <img src="16.jpg" alt="Family photo 16" />
+  <img src="1.jpg" alt="Family photo 1" />
+  <img src="4.jpg" alt="Family photo 4" />
+  <img src="5.jpg" alt="Family photo 5" />
+  <img src="6.jpg" alt="Family photo 6" />
+  <img src="11.png" alt="Family photo 11" />
+  <img src="8.jpg" alt="Family photo 8" />
+</div>
+
+<!-- Lightbox overlay -->
+<div id="lightbox-overlay">
+  <span id="lightbox-close">&times;</span>
+  <img src="" alt="Enlarged family photo" />
+</div>
+
+<script>
+  const lightboxOverlay = document.getElementById('lightbox-overlay');
+  const lightboxImage = lightboxOverlay.querySelector('img');
+  const lightboxClose = document.getElementById('lightbox-close');
+
+  document.querySelectorAll('.photo-grid img').forEach(img => {
+    img.addEventListener('click', () => {
+      lightboxImage.src = img.src;
+      lightboxImage.alt = img.alt;
+      lightboxOverlay.style.display = 'flex';
+      document.body.style.overflow = 'hidden'; // prevent background scroll
+    });
+  });
+
+  // Close lightbox when clicking the close button or outside the image
+  lightboxClose.addEventListener('click', () => {
+    lightboxOverlay.style.display = 'none';
+    document.body.style.overflow = '';
+  });
+
+  lightboxOverlay.addEventListener('click', (e) => {
+    if (e.target === lightboxOverlay) {
+      lightboxOverlay.style.display = 'none';
+      document.body.style.overflow = '';
+    }
+  });
+
+  // Close on ESC key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && lightboxOverlay.style.display === 'flex') {
+      lightboxOverlay.style.display = 'none';
+      document.body.style.overflow = '';
+    }
+  });
+</script>
 
 </body>
-
 </html>
