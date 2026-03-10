@@ -1,5 +1,5 @@
 body{
-    background-color:black;
+    background-color:navy;
     margin:0;
     padding:0;
     display:flex;
@@ -20,14 +20,14 @@ body{
 }
 
 h1{
-    color:white;
+    color:pink;
 }
 
 h2{
     border:5px dashed pink;
     background-color:hotpink;
     font-family:Impact;
-    color:#FF369C;
+    color:white;
     padding:15px;
     border-radius:15px;
     width:250px;
@@ -35,7 +35,7 @@ h2{
 }
 
 h2:hover{
-    border:5px dashed hotpink;
+    border:5px dashed white;
     background-color:pink;
     color:white;
 }
@@ -45,10 +45,11 @@ h2:hover{
     position:fixed;
     bottom:20px;
     right:20px;
-    padding:10px 18px;
+    padding:10px 20px;
     border:none;
     border-radius:8px;
-    background:#0a84ff;
-    color:white;
+    background:white;
+    color:hotpink;
     cursor:pointer;
 }
+
