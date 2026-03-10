@@ -1,31 +1,33 @@
 body{
-    background-color:black;
+    background-color:navy;
     margin:0;
     padding:0;
-    font-family:courier;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
 }
 
-/* Center container */
+/* container for the two sections */
 .sections{
     display:flex;
     justify-content:center;
-    align-items:center;
     gap:120px;
-    height:100vh;
+    margin-top:180px;
+}
+
+.mains, .extra{
     text-align:center;
 }
 
-/* Headings */
 h1{
-    color:white;
+    color:pink;
 }
 
-/* Buttons */
 h2{
-    border:5px dashed pink;
-    background-color:hotpink;
+    border:5px dashed hotpink;
+    background-color: pink;
     font-family:Impact;
-    color:#FF369C;
+    color:hotpink;
     padding:15px;
     border-radius:15px;
     width:250px;
@@ -33,12 +35,12 @@ h2{
 }
 
 h2:hover{
-    border:5px dashed hotpink;
-    background-color:pink;
-    color:white;
+    border:5px dashed pink;
+    background-color: white;
+    color:hotpink;
 }
 
-/* Toggle theme button bottom-right */
+/* Toggle theme button bottom right */
 .theme-btn{
     position:fixed;
     bottom:20px;
@@ -50,4 +52,3 @@ h2:hover{
     color:white;
     cursor:pointer;
 }
-
