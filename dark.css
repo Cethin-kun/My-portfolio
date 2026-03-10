@@ -1,36 +1,54 @@
-body {
-		background-color:black;
-	}
-	
-	.mains {
-		position:absolute;
-		left:550px;
-		top:180px;
-	}
-	
-	h2 {
-		border: 5px dashed pink;
-		background-color:hotpink;
-		font-family:Impact;
-		color:#FF369C;
-		padding:15px;
-		border-radius:15px;
-		width:250px;
-	}
-	
-	h2:hover {
-		border: 5px dashed hotpink;
-		background-color:pink;
-		font-family:Impact;
-		color:white;
-		padding:15px;
-		border-radius:15px;
-		width:250px;
-	}
-	
-	.extra {
-		position:absolute;
-		left:950px;
-		top:180px;
-	}
-	
+body{
+    background-color:black;
+    margin:0;
+    padding:0;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
+/* container for the two sections */
+.sections{
+    display:flex;
+    justify-content:center;
+    gap:120px;
+    margin-top:180px;
+}
+
+.mains, .extra{
+    text-align:center;
+}
+
+h1{
+    color:white;
+}
+
+h2{
+    border:5px dashed pink;
+    background-color:hotpink;
+    font-family:Impact;
+    color:#FF369C;
+    padding:15px;
+    border-radius:15px;
+    width:250px;
+    margin:15px auto;
+}
+
+h2:hover{
+    border:5px dashed hotpink;
+    background-color:pink;
+    color:white;
+}
+
+/* Toggle theme button bottom right */
+.theme-btn{
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    padding:10px 18px;
+    border:none;
+    border-radius:8px;
+    background:#0a84ff;
+    color:white;
+    cursor:pointer;
+}
