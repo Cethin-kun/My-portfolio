@@ -86,13 +86,6 @@ button.save-btn{
   <button onclick="logout()">Logout</button>
 </div>
 
-<div class="container">
-  <h1>Dashboard</h1>
-  <p id="welcome"></p>
-
-  <textarea id="dashboardText"></textarea>
-  <button id="saveBtn" class="save-btn" onclick="saveText()">Save</button>
-</div>
 
 <script>
 
@@ -104,18 +97,6 @@ if(!user){
 
 // Show username
 document.getElementById("usernameDisplay").innerText = user.username
-
-// Admin check
-const saveBtn = document.getElementById("saveBtn")
-if(user.isAdmin){
-  textArea.readOnly = false
-  textArea.classList.remove("readonly")
-  saveBtn.style.display = "block"
-}else{
-  textArea.readOnly = true
-  textArea.classList.add("readonly")
-  saveBtn.style.display = "none"
-}
 
 // Logout function - clears session
 function logout(){
@@ -132,3 +113,4 @@ function closeWindow(){
 
 </body>
 </html>
+
