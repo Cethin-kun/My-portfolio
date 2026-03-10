@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Pretend Shimeji</title>
+
+<style>
+
+body{
+  height:200vh;
+}
+
+/* Shimeji container */
+#shimeji{
+  position:fixed;
+  bottom:0;
+  left:100px;
+  width:120px;
+  pointer-events:none;
+  transition:left 2s linear;
+}
+
+/* Image */
+#shimeji img{
+  width:100%;
+  image-rendering:pixelated;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div id="shimeji">
+  <img id="shimejiSprite" src="idle.gif">
+</div>
+
+<script>
+
+const shimeji = document.getElementById("shimeji")
+const sprite = document.getElementById("shimejiSprite")
+
+const walkGif = "walk.gif"
+const idleGif = "idle.gif"
+
+function moveRandom(){
+
+  const screenWidth = window.innerWidth - 120
+
+  const newX = Math.random() * screenWidth
+
+  const currentX = shimeji.offsetLeft
+
+  // flip direction
+  if(newX < currentX){
+    shimeji.style.transform = "scaleX(-1)"
+  }else{
+    shimeji.style.transform = "scaleX(1)"
+  }
+
+  // walking animation
+  sprite.src = walkGif
+
+  shimeji.style.left = newX + "px"
+
+  // after movement go idle
+  setTimeout(()=>{
+    sprite.src = idleGif
+  },2000)
+
+}
+
+// move every few seconds
+setInterval(moveRandom,4000)
+
+</script>
+
+</body>
+</html>
