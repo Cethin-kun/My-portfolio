@@ -1,4 +1,36 @@
 body {
-  color:white;
-  background-color: black;
-}
+		background-color:black;
+	}
+	
+	.mains {
+		position:absolute;
+		left:550px;
+		top:180px;
+	}
+	
+	h2 {
+		border: 5px dashed pink;
+		background-color:hotpink;
+		font-family:Impact;
+		color:#FF369C;
+		padding:15px;
+		border-radius:15px;
+		width:250px;
+	}
+	
+	h2:hover {
+		border: 5px dashed hotpink;
+		background-color:pink;
+		font-family:Impact;
+		color:white;
+		padding:15px;
+		border-radius:15px;
+		width:250px;
+	}
+	
+	.extra {
+		position:absolute;
+		left:950px;
+		top:180px;
+	}
+	
