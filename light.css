@@ -5,6 +5,7 @@ body{
     display:flex;
     flex-direction:column;
     align-items:center;
+    animation: fadeIn 1s ease-in;
 }
 
 /* container for the two sections */
@@ -13,34 +14,44 @@ body{
     justify-content:center;
     gap:120px;
     margin-top:180px;
+    animation: slideUp 1s ease;
 }
 
 .mains, .extra{
     text-align:center;
 }
 
+/* Titles */
 h1{
     color:pink;
+    animation: fadeIn 2s ease;
 }
 
+/* Buttons */
 h2{
     border:5px dashed hotpink;
-    background-color: pink;
+    background-color:pink;
     font-family:Impact;
     color:hotpink;
     padding:15px;
     border-radius:15px;
     width:250px;
     margin:15px auto;
+
+    transition: all 0.3s ease;
 }
 
+/* Hover animation */
 h2:hover{
     border:5px dashed pink;
-    background-color: white;
+    background-color:white;
     color:hotpink;
+
+    transform: scale(1.08) rotate(-1deg);
+    box-shadow:0 8px 20px rgba(255,105,180,0.5);
 }
 
-/* Toggle theme button bottom right */
+/* Toggle theme button */
 .theme-btn{
     position:fixed;
     bottom:20px;
@@ -51,4 +62,34 @@ h2:hover{
     background:hotpink;
     color:white;
     cursor:pointer;
+
+    transition: all 0.3s ease;
+}
+
+/* Hover effect for toggle button */
+.theme-btn:hover{
+    transform: scale(1.1);
+    box-shadow:0 5px 15px rgba(255,105,180,0.6);
+}
+
+/* Animations */
+
+@keyframes fadeIn{
+    from{
+        opacity:0;
+    }
+    to{
+        opacity:1;
+    }
+}
+
+@keyframes slideUp{
+    from{
+        transform:translateY(40px);
+        opacity:0;
+    }
+    to{
+        transform:translateY(0);
+        opacity:1;
+    }
 }
