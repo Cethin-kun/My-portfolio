@@ -25,7 +25,7 @@ h1{
 
 h2{
     border:5px dashed pink;
-    background-color:hotpink;
+    background-color:white;
     font-family:Impact;
     color:#FF369C;
     padding:15px;
@@ -35,8 +35,8 @@ h2{
 }
 
 h2:hover{
-    border:5px dashed hotpink;
-    background-color:pink;
+    border:5px dashed white;
+    background-color:hotpink;
     color:white;
 }
 
@@ -52,3 +52,4 @@ h2:hover{
     color:white;
     cursor:pointer;
 }
+
