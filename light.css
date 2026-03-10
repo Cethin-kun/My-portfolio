@@ -1,5 +1,5 @@
 body{
-    background-color:navy;
+    background-color:white;
     margin:0;
     padding:0;
     display:flex;
@@ -93,3 +93,4 @@ h2:hover{
         opacity:1;
     }
 }
+
