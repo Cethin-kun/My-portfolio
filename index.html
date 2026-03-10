@@ -134,10 +134,6 @@ textarea{
         <img width="100" src="assets/start screen/NotesIcon.png">
     </button>
 
-    <button onclick="openWarnings()">
-        <img width="150" src="assets/start screen/WarningsIcon.png">
-    </button>
-
     <button id="startBtn">
         <img width="200" src="assets/start screen/singLogIcon.png">
     </button>
@@ -148,7 +144,7 @@ textarea{
     </button>
     
     <button id="dashboardIcon" onclick="openDashboard()" style="display:none;">
-        <img width="200" src="assets/start screen/adminIcon.png">
+        <img width="200" src="assets/start screen/WarningsIcon.png">
     </button>
 
 
@@ -163,18 +159,6 @@ textarea{
     <div class="window-content">
         <textarea id="notesText"></textarea>
         <button onclick="saveNotes()">Save Notes</button>
-    </div>
-</div>
-
-<!-- WARNINGS WINDOW -->
-<div id="warningsWindow" class="window">
-    <div class="window-header">
-        <span>Warnings</span>
-        <button onclick="closeWindow('warningsWindow')">X</button>
-    </div>
-    <div class="window-content">
-        <textarea id="warningsText"></textarea>
-        <button id="saveWarningsBtn" onclick="saveWarnings()">Save</button>
     </div>
 </div>
 
@@ -239,11 +223,6 @@ function openDashboard(){
     window.location.href = "dashboard.html";
 }
 
-// OPEN NOTES / WARNINGS
-function openNotes(){ document.getElementById("notesWindow").style.display="block"; }
-function openWarnings(){ document.getElementById("warningsWindow").style.display="block"; }
-function closeWindow(id){ document.getElementById(id).style.display="none"; }
-
 // GO TO HOMEPAGE
 function goToHomepage(){
     window.location.href = "homepage.html";
@@ -272,6 +251,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
 </body>
 </html>
+
 
 
 
