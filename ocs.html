@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Character Viewer</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial, sans-serif;
+background:#cfcfcf;
+display:flex;
+height:100vh;
+}
+
+/* LEFT MENU */
+
+.sidebar{
+width:220px;
+background:#9b9b9b;
+padding:30px 15px;
+color:white;
+}
+
+.sidebar h1{
+font-size:36px;
+margin-bottom:40px;
+}
+
+.menu-btn{
+display:block;
+width:100%;
+margin:15px 0;
+padding:10px;
+border:none;
+background:#bfbfbf;
+color:white;
+font-size:18px;
+cursor:pointer;
+}
+
+.menu-btn:hover{
+background:#8e8e8e;
+}
+
+/* MAIN SCREEN */
+
+.main{
+flex:1;
+display:flex;
+flex-direction:column;
+padding:20px;
+}
+
+/* CHARACTER TABS */
+
+.tabs{
+display:flex;
+background:black;
+padding:5px;
+}
+
+.tab{
+background:white;
+padding:6px 15px;
+margin-right:5px;
+cursor:pointer;
+font-size:14px;
+}
+
+.tab.active{
+background:#c1c1c1;
+}
+
+/* CONTENT AREA */
+
+.content{
+flex:1;
+display:flex;
+background:#bfbfbf;
+padding:20px;
+}
+
+/* IMAGE AREA */
+
+.image-box{
+width:220px;
+height:260px;
+background:white;
+display:flex;
+align-items:center;
+justify-content:center;
+margin-right:20px;
+}
+
+/* INFO AREA */
+
+.info{
+flex:1;
+}
+
+.info h2{
+margin-top:0;
+}
+
+.line{
+border-bottom:2px solid black;
+margin:20px 0;
+}
+
+/* BACK BUTTON */
+
+.back-area{
+display:flex;
+justify-content:flex-end;
+margin-top:10px;
+}
+
+.back-btn{
+padding:10px 20px;
+font-size:16px;
+background:#bfbfbf;
+border:none;
+cursor:pointer;
+}
+
+.back-btn:hover{
+background:#8e8e8e;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+
+<div class="sidebar">
+
+<h1>OCS</h1>
+
+<button class="menu-btn" onclick="showCategory('ocs')">Original Characters</button>
+
+<button class="menu-btn" onclick="showCategory('fantum')">Fantum</button>
+
+<button class="menu-btn" onclick="showCategory('labrat')">Labrat</button>
+
+</div>
+
+<!-- MAIN CONTENT -->
+
+<div class="main">
+
+<div class="tabs" id="tabs"></div>
+
+<div class="content">
+
+<div class="image-box" id="characterImage">
+Character<br>Picture
+</div>
+
+<div class="info">
+
+<h2 id="charName">Character Name</h2>
+
+<p><b>Pronouns:</b> <span id="charPronouns"></span></p>
+<p><b>Job:</b> <span id="charJob"></span></p>
+
+<div class="line"></div>
+
+<p id="charDescription">
+Character description will appear here.
+</p>
+
+</div>
+
+</div>
+
+<div class="back-area">
+<button class="back-btn" onclick="goBack()">Back</button>
+</div>
+
+</div>
+
+<script>
+
+/* CHARACTER DATA */
+
+const characters = {
+
+ocs:[
+{
+name:"Character 1",
+pronouns:"They/Them",
+job:"Adventurer",
+description:"This is a sample OC character description."
+},
+{
+name:"Character 2",
+pronouns:"She/Her",
+job:"Mage",
+description:"Another character description."
+},
+{
+name:"Character 3",
+pronouns:"He/Him",
+job:"Warrior",
+description:"A brave warrior character."
+}
+],
+
+fantum:[
+{
+name:"Fantum A",
+pronouns:"They/Them",
+job:"Ghost",
+description:"A mysterious spirit."
+},
+{
+name:"Fantum B",
+pronouns:"She/Her",
+job:"Watcher",
+description:"Observes the world silently."
+}
+],
+
+labrat:[
+{
+name:"Patient 01",
+pronouns:"He/Him",
+job:"Patient",
+description:"Subject of experimentation."
+},
+{
+name:"Doctor X",
+pronouns:"She/Her",
+job:"Doctor",
+description:"Lead scientist."
+}
+]
+
+};
+
+let currentCategory="ocs";
+
+/* LOAD CATEGORY */
+
+function showCategory(category){
+
+currentCategory=category;
+
+const tabs=document.getElementById("tabs");
+tabs.innerHTML="";
+
+characters[category].forEach((char,index)=>{
+
+const tab=document.createElement("div");
+tab.className="tab";
+tab.innerText=char.name;
+
+tab.onclick=()=>loadCharacter(index);
+
+tabs.appendChild(tab);
+
+});
+
+loadCharacter(0);
+
+}
+
+/* LOAD CHARACTER */
+
+function loadCharacter(index){
+
+const char=characters[currentCategory][index];
+
+document.getElementById("charName").innerText=char.name;
+document.getElementById("charPronouns").innerText=char.pronouns;
+document.getElementById("charJob").innerText=char.job;
+document.getElementById("charDescription").innerText=char.description;
+
+}
+
+/* BACK BUTTON */
+
+function goBack(){
+
+showCategory(currentCategory);
+
+}
+
+/* INITIAL LOAD */
+
+showCategory("ocs");
+
+</script>
+
+</body>
+</html>
