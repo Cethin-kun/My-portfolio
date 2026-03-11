@@ -14,64 +14,106 @@ height:100vh;
 display:flex;
 justify-content:center;
 align-items:center;
-background:#f2f2f2;
 font-family:Courier New, monospace;
 overflow:hidden;
+color:#444;
+
+/* white room gradient */
+
+background:linear-gradient(
+to bottom,
+#ffffff 0%,
+#f1f1f1 40%,
+#e6e6e6 100%
+);
 }
 
-/* subtle flickering room lighting */
-
-@keyframes flicker{
-0%{background:#f2f2f2;}
-50%{background:#ededed;}
-100%{background:#f2f2f2;}
-}
-
-body{
-animation:flicker 6s infinite;
-}
-
-/* container */
+/* CAMERA SWAY */
 
 .room{
 text-align:center;
-color:#555;
+animation:sway 8s infinite ease-in-out;
 }
 
-/* title */
+@keyframes sway{
+0%{transform:translateX(-6px) translateY(2px);}
+50%{transform:translateX(6px) translateY(-2px);}
+100%{transform:translateX(-6px) translateY(2px);}
+}
+
+/* FLICKERING LIGHT */
+
+.light{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+pointer-events:none;
+background:radial-gradient(circle at 50% 10%, rgba(255,255,255,.9), rgba(255,255,255,0) 60%);
+animation:flicker 5s infinite;
+}
+
+@keyframes flicker{
+0%{opacity:1;}
+48%{opacity:1;}
+50%{opacity:.4;}
+52%{opacity:1;}
+70%{opacity:.7;}
+100%{opacity:1;}
+}
+
+/* CEILING SHADOW EFFECT */
+
+.shadow{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+pointer-events:none;
+background:linear-gradient(to bottom, rgba(0,0,0,.15), transparent 30%);
+animation:shadowMove 6s infinite;
+}
+
+@keyframes shadowMove{
+0%{opacity:.2;}
+50%{opacity:.35;}
+100%{opacity:.2;}
+}
+
+/* TITLE */
 
 .title{
 font-size:70px;
 letter-spacing:8px;
-margin-bottom:10px;
-animation:glitch 4s infinite;
+margin-bottom:20px;
+animation:drift 10s infinite ease-in-out;
 }
 
-@keyframes glitch{
-0%{transform:translate(0);}
-20%{transform:translate(-1px,1px);}
-40%{transform:translate(1px,-1px);}
-60%{transform:translate(-1px,-1px);}
-80%{transform:translate(1px,1px);}
-100%{transform:translate(0);}
-}
+/* TEXT DRIFT */
 
-/* warning text */
+@keyframes drift{
+0%{transform:translateX(0);}
+25%{transform:translateX(2px);}
+50%{transform:translateX(-3px);}
+75%{transform:translateX(1px);}
+100%{transform:translateX(0);}
+}
 
 .warning{
 font-size:24px;
 margin-bottom:40px;
+opacity:.8;
 }
-
-/* description */
 
 .desc{
 font-size:20px;
-margin-bottom:80px;
-opacity:.7;
+margin-bottom:90px;
+opacity:.6;
 }
 
-/* play button */
+/* PLAY BUTTON */
 
 .play{
 display:inline-block;
@@ -89,25 +131,21 @@ background:black;
 transform:scale(1.05);
 }
 
-/* creepy screen flash */
+/* WHISPER TEXT */
 
-.flash{
+.whisper{
 position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:white;
+color:#666;
+font-size:22px;
 opacity:0;
 pointer-events:none;
-animation:flash 12s infinite;
+animation:fadeWhisper 4s ease;
 }
 
-@keyframes flash{
+@keyframes fadeWhisper{
 0%{opacity:0;}
-48%{opacity:0;}
-50%{opacity:.2;}
-52%{opacity:0;}
+20%{opacity:.5;}
+80%{opacity:.5;}
 100%{opacity:0;}
 }
 
@@ -117,7 +155,8 @@ animation:flash 12s infinite;
 
 <body>
 
-<div class="flash"></div>
+<div class="light"></div>
+<div class="shadow"></div>
 
 <div class="room">
 
@@ -127,12 +166,53 @@ animation:flash 12s infinite;
 
 <div class="desc">This game is about...</div>
 
-<div class="play" onclick="startGame()"><a href="https://cethin-kun.itch.io/labrat"><h2>Click here to play test 𖠌</h2></a>
- </div>
+<div class="play" onclick="startGame()">Click to play</div>
 
 </div>
 
 <script>
+
+/* DISTANT FOOTSTEPS */
+
+const stepAudio = new Audio("https://cdn.pixabay.com/download/audio/2022/03/15/audio_5f1e0fcb1a.mp3?filename=footsteps-hallway-ambient-110140.mp3");
+stepAudio.volume = 0.15;
+
+setInterval(()=>{
+stepAudio.currentTime=0;
+stepAudio.play();
+},20000);
+
+
+/* RANDOM WHISPERS */
+
+const whispers = [
+"you shouldn't be here",
+"they are watching",
+"wake up",
+"don't trust them",
+"the experiment continues"
+];
+
+function createWhisper(){
+
+const w = document.createElement("div");
+w.className="whisper";
+
+w.innerText = whispers[Math.floor(Math.random()*whispers.length)];
+
+w.style.left = Math.random()*90+"vw";
+w.style.top = Math.random()*90+"vh";
+
+document.body.appendChild(w);
+
+setTimeout(()=>{w.remove();},4000);
+
+}
+
+setInterval(createWhisper,8000);
+
+
+/* START GAME */
 
 function startGame(){
 
@@ -140,7 +220,7 @@ document.body.style.transition="1s";
 document.body.style.background="black";
 
 setTimeout(()=>{
-alert("Game starting...");
+alert("The experiment begins.");
 },1000);
 
 }
