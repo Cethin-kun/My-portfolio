@@ -15,8 +15,6 @@ display:flex;
 height:100vh;
 }
 
-/* SIDEBAR */
-
 .sidebar{
 width:220px;
 background:#9b9b9b;
@@ -51,16 +49,12 @@ cursor:pointer;
 background:#8e8e8e;
 }
 
-/* MAIN AREA */
-
 .main{
 flex:1;
 display:flex;
 flex-direction:column;
 padding:20px;
 }
-
-/* CHARACTER TABS */
 
 .tabs{
 display:flex;
@@ -80,16 +74,12 @@ font-size:14px;
 background:#c1c1c1;
 }
 
-/* CONTENT AREA */
-
 .content{
 flex:1;
 display:flex;
 background:#bfbfbf;
 padding:20px;
 }
-
-/* FANTUMEN RED THEME */
 
 .fantum-theme{
 background:#b91c1c;
@@ -100,8 +90,6 @@ color:white;
 border-bottom:2px solid white;
 }
 
-/* IMAGE BOX */
-
 .image-box{
 width:220px;
 height:260px;
@@ -110,9 +98,14 @@ display:flex;
 align-items:center;
 justify-content:center;
 margin-right:20px;
+overflow:hidden;
 }
 
-/* INFO */
+.image-box img{
+width:100%;
+height:100%;
+object-fit:cover;
+}
 
 .info{
 flex:1;
@@ -126,8 +119,6 @@ margin-top:0;
 border-bottom:2px solid black;
 margin:20px 0;
 }
-
-/* BACK BUTTON */
 
 .back-area{
 display:flex;
@@ -157,9 +148,7 @@ background:#8e8e8e;
 <h1>OCS</h1>
 
 <p>
-This page shows my original characters.  
-Choose a category to view their profiles with their pronouns, jobs,
-and descriptions.
+This page shows my original characters. Choose a category to view their profiles.
 </p>
 
 <button class="menu-btn" onclick="showCategory('fantum')">Fantumen</button>
@@ -174,7 +163,7 @@ and descriptions.
 <div class="content" id="contentArea">
 
 <div class="image-box">
-Character<br>Picture
+<img id="charImage" src="" alt="Character Image">
 </div>
 
 <div class="info">
@@ -205,75 +194,99 @@ Character description will appear here.
 const characters = {
 
 fantum:[
+
 {
 name:"Fantumen 1",
 pronouns:"They/Them",
 job:"Ghost",
-description:"A mysterious spirit."
+description:"A mysterious spirit.",
+image:"images/fantumen1.png"
 },
+
 {
 name:"Fantumen 2",
 pronouns:"She/Her",
 job:"Watcher",
-description:"Observes the world silently."
+description:"Observes the world silently.",
+image:"images/fantumen2.png"
 },
+
 {
 name:"Fantumen 3",
 pronouns:"He/Him",
 job:"Wanderer",
-description:"Travels through dimensions."
+description:"Travels through dimensions.",
+image:"images/fantumen3.png"
 },
+
 {
 name:"Fantumen 4",
 pronouns:"They/Them",
 job:"Shadow",
-description:"A being that hides between worlds."
+description:"A being hiding between worlds.",
+image:"images/fantumen4.png"
 },
+
 {
 name:"Fantumen 5",
 pronouns:"She/They",
 job:"Guide",
-description:"Helps lost souls find their path."
+description:"Helps lost souls find their path.",
+image:"images/fantumen5.png"
 }
+
 ],
 
 labrat:[
+
 {
 name:"Patient 01",
 pronouns:"He/Him",
 job:"Patient",
-description:"Subject of experimentation."
+description:"Subject of experimentation.",
+image:"images/patient1.png"
 },
+
 {
 name:"Doctor X",
 pronouns:"She/Her",
 job:"Doctor",
-description:"Lead scientist."
+description:"Lead scientist.",
+image:"images/doctorx.png"
 },
+
 {
 name:"Patient 02",
 pronouns:"They/Them",
 job:"Test Subject",
-description:"Another experimental subject."
+description:"Another experimental subject.",
+image:"images/patient2.png"
 },
+
 {
 name:"Researcher A",
 pronouns:"He/Him",
 job:"Scientist",
-description:"Collects lab data."
+description:"Collects lab data.",
+image:"images/researcherA.png"
 },
+
 {
 name:"Researcher B",
 pronouns:"She/Her",
 job:"Scientist",
-description:"Assists experiments."
+description:"Assists experiments.",
+image:"images/researcherB.png"
 },
+
 {
 name:"Specimen Z",
 pronouns:"Unknown",
 job:"Unknown",
-description:"An unidentified entity kept in containment."
+description:"An unidentified entity kept in containment.",
+image:"images/specimenZ.png"
 }
+
 ]
 
 };
@@ -319,6 +332,8 @@ document.getElementById("charName").innerText=char.name;
 document.getElementById("charPronouns").innerText=char.pronouns;
 document.getElementById("charJob").innerText=char.job;
 document.getElementById("charDescription").innerText=char.description;
+
+document.getElementById("charImage").src=char.image;
 
 }
 
