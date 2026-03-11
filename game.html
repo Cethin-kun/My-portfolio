@@ -18,14 +18,32 @@ font-family:Courier New, monospace;
 overflow:hidden;
 color:#444;
 
-/* white room gradient */
-
 background:linear-gradient(
 to bottom,
 #ffffff 0%,
 #f1f1f1 40%,
 #e6e6e6 100%
 );
+}
+
+/* BACK BUTTON */
+
+.back{
+position:fixed;
+top:20px;
+left:20px;
+padding:12px 25px;
+background:#555;
+color:white;
+cursor:pointer;
+font-size:18px;
+letter-spacing:2px;
+transition:.3s;
+}
+
+.back:hover{
+background:black;
+transform:scale(1.05);
 }
 
 /* CAMERA SWAY */
@@ -63,7 +81,7 @@ animation:flicker 5s infinite;
 100%{opacity:1;}
 }
 
-/* CEILING SHADOW EFFECT */
+/* CEILING SHADOW */
 
 .shadow{
 position:fixed;
@@ -90,8 +108,6 @@ letter-spacing:8px;
 margin-bottom:20px;
 animation:drift 10s infinite ease-in-out;
 }
-
-/* TEXT DRIFT */
 
 @keyframes drift{
 0%{transform:translateX(0);}
@@ -131,7 +147,7 @@ background:black;
 transform:scale(1.05);
 }
 
-/* WHISPER TEXT */
+/* WHISPERS */
 
 .whisper{
 position:fixed;
@@ -158,6 +174,10 @@ animation:fadeWhisper 4s ease;
 <div class="light"></div>
 <div class="shadow"></div>
 
+<!-- BACK BUTTON -->
+
+<div class="back" onclick="goBack()">Back</div>
+
 <div class="room">
 
 <div class="title">LABRAT</div>
@@ -172,6 +192,12 @@ animation:fadeWhisper 4s ease;
 
 <script>
 
+/* BACK BUTTON */
+
+function goBack(){
+window.location.href="personal.html";
+}
+
 /* DISTANT FOOTSTEPS */
 
 const stepAudio = new Audio("https://cdn.pixabay.com/download/audio/2022/03/15/audio_5f1e0fcb1a.mp3?filename=footsteps-hallway-ambient-110140.mp3");
@@ -182,10 +208,9 @@ stepAudio.currentTime=0;
 stepAudio.play();
 },20000);
 
+/* WHISPERS */
 
-/* RANDOM WHISPERS */
-
-const whispers = [
+const whispers=[
 "you shouldn't be here",
 "they are watching",
 "wake up",
@@ -195,13 +220,13 @@ const whispers = [
 
 function createWhisper(){
 
-const w = document.createElement("div");
+const w=document.createElement("div");
 w.className="whisper";
 
-w.innerText = whispers[Math.floor(Math.random()*whispers.length)];
+w.innerText=whispers[Math.floor(Math.random()*whispers.length)];
 
-w.style.left = Math.random()*90+"vw";
-w.style.top = Math.random()*90+"vh";
+w.style.left=Math.random()*90+"vw";
+w.style.top=Math.random()*90+"vh";
 
 document.body.appendChild(w);
 
@@ -210,7 +235,6 @@ setTimeout(()=>{w.remove();},4000);
 }
 
 setInterval(createWhisper,8000);
-
 
 /* START GAME */
 
