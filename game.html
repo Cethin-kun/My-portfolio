@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Labrat</title>
+
+<style>
+
+body{
+margin:0;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:#f2f2f2;
+font-family:Courier New, monospace;
+overflow:hidden;
+}
+
+/* subtle flickering room lighting */
+
+@keyframes flicker{
+0%{background:#f2f2f2;}
+50%{background:#ededed;}
+100%{background:#f2f2f2;}
+}
+
+body{
+animation:flicker 6s infinite;
+}
+
+/* container */
+
+.room{
+text-align:center;
+color:#555;
+}
+
+/* title */
+
+.title{
+font-size:70px;
+letter-spacing:8px;
+margin-bottom:10px;
+animation:glitch 4s infinite;
+}
+
+@keyframes glitch{
+0%{transform:translate(0);}
+20%{transform:translate(-1px,1px);}
+40%{transform:translate(1px,-1px);}
+60%{transform:translate(-1px,-1px);}
+80%{transform:translate(1px,1px);}
+100%{transform:translate(0);}
+}
+
+/* warning text */
+
+.warning{
+font-size:24px;
+margin-bottom:40px;
+}
+
+/* description */
+
+.desc{
+font-size:20px;
+margin-bottom:80px;
+opacity:.7;
+}
+
+/* play button */
+
+.play{
+display:inline-block;
+padding:20px 60px;
+background:#555;
+color:white;
+font-size:28px;
+cursor:pointer;
+letter-spacing:3px;
+transition:.3s;
+}
+
+.play:hover{
+background:black;
+transform:scale(1.05);
+}
+
+/* creepy screen flash */
+
+.flash{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:white;
+opacity:0;
+pointer-events:none;
+animation:flash 12s infinite;
+}
+
+@keyframes flash{
+0%{opacity:0;}
+48%{opacity:0;}
+50%{opacity:.2;}
+52%{opacity:0;}
+100%{opacity:0;}
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="flash"></div>
+
+<div class="room">
+
+<div class="title">LABRAT</div>
+
+<div class="warning">Warning: This game</div>
+
+<div class="desc">This game is about...</div>
+
+<div class="play" onclick="startGame()">Click to play</div>
+
+</div>
+
+<script>
+
+function startGame(){
+
+document.body.style.transition="1s";
+document.body.style.background="black";
+
+setTimeout(()=>{
+alert("Game starting...");
+},1000);
+
+}
+
+</script>
+
+</body>
+</html>
