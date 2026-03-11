@@ -1,23 +1,205 @@
 <!DOCTYPE html>
-<html>
-<head><title>Collection Album</title></head>
-<body>
-<h1 style="font-family:Impact; color:#FF369C;"> COLLECTION! (♡ˊ͈ ꒳ ˋ͈)<h1>
-	<img src="1.jpg" height="300"> 
-	<img src="2.jpg" height="300"> 
-	<img src="3.jpg" height="300"> 
-	<img src="4.jpg" height="300"> 
-	<img src="5.jpg" height="300"> 
-	<img src="6.jpg" height="300"> 
-	<img src="7.png" height="300"> 
-	<img src="8.png" height="300"> 
-<br>
-	<img src="h1.jpg" height="300"> 
-	<img src="h2.jpg" height="300"> 
-	<img src="h3.png" height="300"> 
-	<img src="h4.png" height="300"> 
-	<img src="h5.png" height="300"> 
-	<img src="h6.png" height="300"> 
-</body>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Collection Album</title>
 
+<style>
+body{
+  background-color:#111;
+  font-family:'Impact', sans-serif;
+  color:#FF369C;
+  margin:30px;
+}
+
+h1{
+  text-align:center;
+}
+
+.photo-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
+  gap:20px;
+  max-width:1200px;
+  margin:0 auto 40px;
+}
+
+.photo-grid img{
+  width:100%;
+  height:180px;
+  object-fit:cover;
+  border-radius:15px;
+  box-shadow:0 4px 10px rgba(255,54,156,0.4);
+  transition:transform 0.3s ease, box-shadow 0.3s ease;
+  cursor:pointer;
+}
+
+.photo-grid img:hover{
+  transform:scale(1.05);
+  box-shadow:0 8px 20px rgba(255,54,156,0.8);
+}
+
+.back-link{
+  display:inline-block;
+  margin:0 auto 40px;
+  font-size:18px;
+  font-weight:bold;
+  text-decoration:none;
+  color:#ff7fcf;
+  background:#d46a9d;
+  padding:10px 22px;
+  border-radius:30px;
+  box-shadow:0 4px 12px rgba(212,106,157,0.7);
+  transition:background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.back-link:hover{
+  background:#ff91c6;
+  box-shadow:0 6px 18px rgba(255,105,180,0.9);
+}
+
+.more{
+  max-width:600px;
+  margin:0 auto;
+}
+
+.more ul{
+  list-style:none;
+  padding-left:0;
+}
+
+.more li{
+  margin-bottom:15px;
+}
+
+.more a h2{
+  background:#e889b5;
+  padding:12px 25px;
+  border-radius:30px;
+  color:white;
+  display:inline-block;
+  width:100%;
+  text-align:center;
+  transition:background 0.25s ease, transform 0.25s ease;
+}
+
+.more a h2:hover{
+  background:#d46a9d;
+  transform:scale(1.05);
+}
+
+.divider{
+  text-align:center;
+  font-size:1.6em;
+  margin:30px 0 20px;
+}
+
+/* Lightbox */
+#lightbox-overlay{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(28,28,31,0.9);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  z-index:9999;
+  cursor:zoom-out;
+}
+
+#lightbox-overlay img{
+  max-width:90%;
+  max-height:90%;
+  border-radius:15px;
+  box-shadow:0 0 30px #ff369c;
+}
+
+#lightbox-close{
+  position:fixed;
+  top:25px;
+  right:30px;
+  font-size:36px;
+  color:#ff369c;
+  font-weight:bold;
+  cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<h1>COLLECTION (♡ˊ͈ ꒳ ˋ͈)</h1>
+
+<div class="photo-grid">
+<img src="1.jpg">
+<img src="2.jpg">
+<img src="3.jpg">
+<img src="4.jpg">
+<img src="5.jpg">
+<img src="6.JPG">
+<img src="7.png">
+<img src="8.png">
+<img src="h1.jpg">
+<img src="h2.jpg">
+<img src="h3.png">
+<img src="h4.png">
+<img src="h5.png">
+<img src="h6.png">
+</div>
+
+<div style="text-align:center;">
+<a href="index.html" class="back-link">⮜ Back</a>
+</div>
+
+<div class="more">
+<div class="divider">⋆｡‧˚ʚ MORE ɞ˚‧｡⋆</div>
+<ul>
+<li><a href="personal.html"><h2>PERSONAL ₍^. .^₎⟆</h2></a></li>
+<li><a href="education.html"><h2>EDUCATION (⩌︿⩌)</h2></a></li>
+<li><a href="family.html"><h2>FAMILY (°ㅁ°)!!</h2></a></li>
+</ul>
+</div>
+
+<div id="lightbox-overlay">
+<span id="lightbox-close">&times;</span>
+<img src="">
+</div>
+
+<script>
+const overlay = document.getElementById('lightbox-overlay');
+const overlayImg = overlay.querySelector('img');
+const closeBtn = document.getElementById('lightbox-close');
+
+document.querySelectorAll('.photo-grid img').forEach(img=>{
+  img.addEventListener('click',()=>{
+    overlayImg.src = img.src;
+    overlay.style.display='flex';
+    document.body.style.overflow='hidden';
+  });
+});
+
+closeBtn.onclick = ()=>{
+  overlay.style.display='none';
+  document.body.style.overflow='';
+};
+
+overlay.onclick = (e)=>{
+  if(e.target===overlay){
+    overlay.style.display='none';
+    document.body.style.overflow='';
+  }
+};
+
+document.addEventListener('keydown',(e)=>{
+  if(e.key==='Escape'){
+    overlay.style.display='none';
+    document.body.style.overflow='';
+  }
+});
+</script>
+
+</body>
 </html>
