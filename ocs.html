@@ -26,8 +26,18 @@ color:white;
 
 .sidebar h1{
 font-size:36px;
-margin-bottom:40px;
+margin-bottom:10px;
 }
+
+/* paragraph under OCS */
+
+.sidebar p{
+font-size:14px;
+line-height:1.5;
+margin-bottom:30px;
+}
+
+/* buttons */
 
 .menu-btn{
 display:block;
@@ -141,10 +151,12 @@ background:#8e8e8e;
 
 <h1>OCS</h1>
 
-<button class="menu-btn" onclick="showCategory('ocs')">Original Characters</button>
+<p>
+This is a collection of my original characters.  
+Each tab shows their pronouns, job, and description.
+</p>
 
-<button class="menu-btn" onclick="showCategory('fantum')">Fantum</button>
-
+<button class="menu-btn" onclick="showCategory('fantum')">Fantumen</button>
 <button class="menu-btn" onclick="showCategory('labrat')">Labrat</button>
 
 </div>
@@ -190,41 +202,42 @@ Character description will appear here.
 
 const characters = {
 
-ocs:[
-{
-name:"Character 1",
-pronouns:"They/Them",
-job:"Adventurer",
-description:"This is a sample OC character description."
-},
-{
-name:"Character 2",
-pronouns:"She/Her",
-job:"Mage",
-description:"Another character description."
-},
-{
-name:"Character 3",
-pronouns:"He/Him",
-job:"Warrior",
-description:"A brave warrior character."
-}
-],
+/* Fantumen now has 5 */
 
 fantum:[
 {
-name:"Fantum A",
+name:"Fantumen 1",
 pronouns:"They/Them",
 job:"Ghost",
 description:"A mysterious spirit."
 },
 {
-name:"Fantum B",
+name:"Fantumen 2",
 pronouns:"She/Her",
 job:"Watcher",
 description:"Observes the world silently."
+},
+{
+name:"Fantumen 3",
+pronouns:"He/Him",
+job:"Wanderer",
+description:"Travels through dimensions."
+},
+{
+name:"Fantumen 4",
+pronouns:"They/Them",
+job:"Shadow",
+description:"A being that hides between worlds."
+},
+{
+name:"Fantumen 5",
+pronouns:"She/They",
+job:"Guide",
+description:"Helps lost souls find their path."
 }
 ],
+
+/* Labrat now has 6 */
 
 labrat:[
 {
@@ -238,12 +251,36 @@ name:"Doctor X",
 pronouns:"She/Her",
 job:"Doctor",
 description:"Lead scientist."
+},
+{
+name:"Patient 02",
+pronouns:"They/Them",
+job:"Test Subject",
+description:"Another experimental subject."
+},
+{
+name:"Researcher A",
+pronouns:"He/Him",
+job:"Scientist",
+description:"Collects lab data."
+},
+{
+name:"Researcher B",
+pronouns:"She/Her",
+job:"Scientist",
+description:"Assists experiments."
+},
+{
+name:"Specimen Z",
+pronouns:"Unknown",
+job:"Unknown",
+description:"An unidentified entity kept in containment."
 }
 ]
 
 };
 
-let currentCategory="ocs";
+let currentCategory="fantum";
 
 /* LOAD CATEGORY */
 
@@ -290,10 +327,6 @@ function goBack(){
 showCategory(currentCategory);
 
 }
-
-/* INITIAL LOAD */
-
-showCategory("ocs");
 
 </script>
 
