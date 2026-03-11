@@ -193,60 +193,50 @@ animation:fadeWhisper 4s ease;
 <script>
 
 /* BACK BUTTON */
-
 function goBack(){
-window.location.href="homepage.html";
+  window.location.href="homepage.html";
 }
 
 /* DISTANT FOOTSTEPS */
-
 const stepAudio = new Audio("https://cdn.pixabay.com/download/audio/2022/03/15/audio_5f1e0fcb1a.mp3?filename=footsteps-hallway-ambient-110140.mp3");
 stepAudio.volume = 0.15;
 
 setInterval(()=>{
-stepAudio.currentTime=0;
-stepAudio.play();
+  stepAudio.currentTime=0;
+  stepAudio.play();
 },20000);
 
 /* WHISPERS */
-
-const whispers=[
-"you shouldn't be here",
-"they are watching",
-"wake up",
-"don't trust them",
-"the experiment continues"
+const whispers = [
+  "you shouldn't be here",
+  "they are watching",
+  "wake up",
+  "don't trust them",
+  "the experiment continues"
 ];
 
 function createWhisper(){
-
-const w=document.createElement("div");
-w.className="whisper";
-
-w.innerText=whispers[Math.floor(Math.random()*whispers.length)];
-
-w.style.left=Math.random()*90+"vw";
-w.style.top=Math.random()*90+"vh";
-
-document.body.appendChild(w);
-
-setTimeout(()=>{w.remove();},4000);
-
+  const w = document.createElement("div");
+  w.className = "whisper";
+  w.innerText = whispers[Math.floor(Math.random()*whispers.length)];
+  w.style.left = Math.random()*90 + "vw";
+  w.style.top = Math.random()*90 + "vh";
+  document.body.appendChild(w);
+  setTimeout(()=>{w.remove();},4000);
 }
 
 setInterval(createWhisper,8000);
 
 /* START GAME */
-
 function startGame(){
+  // Optional animation effect
+  document.body.style.transition = "1s";
+  document.body.style.background = "black";
 
-document.body.style.transition="1s";
-document.body.style.background="black";
-
-setTimeout(()=>{
-alert("The experiment begins.");
-},1000);
-
+  // Redirect to the Itch.io game
+  setTimeout(()=>{
+    window.location.href = "https://cethin-kun.itch.io/labrat";
+  }, 500); // 0.5s delay for smooth transition
 }
 
 </script>
