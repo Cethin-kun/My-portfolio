@@ -289,7 +289,7 @@ labrat:[
 {
 name:"Patient 01",
 pronouns:"He/Him",
-job:"Patient",
+role:"Patient",
 description:"Subject of experimentation.",
 image:"images/patient1.png"
 },
@@ -297,7 +297,7 @@ image:"images/patient1.png"
 {
 name:"Doctor X",
 pronouns:"She/Her",
-job:"Doctor",
+role:"Doctor",
 description:"Lead scientist.",
 image:"images/doctorx.png"
 },
@@ -305,7 +305,7 @@ image:"images/doctorx.png"
 {
 name:"Patient 02",
 pronouns:"They/Them",
-job:"Test Subject",
+role:"Test Subject",
 description:"Another experimental subject.",
 image:"images/patient2.png"
 },
@@ -313,7 +313,7 @@ image:"images/patient2.png"
 {
 name:"Researcher A",
 pronouns:"He/Him",
-job:"Scientist",
+role:"Scientist",
 description:"Collects lab data.",
 image:"images/researcherA.png"
 },
@@ -321,7 +321,7 @@ image:"images/researcherA.png"
 {
 name:"Researcher B",
 pronouns:"She/Her",
-job:"Scientist",
+role:"Scientist",
 description:"Assists experiments.",
 image:"images/researcherB.png"
 },
@@ -329,7 +329,7 @@ image:"images/researcherB.png"
 {
 name:"Specimen Z",
 pronouns:"Unknown",
-job:"Unknown",
+role:"Unknown",
 description:"An unidentified entity kept in containment.",
 image:"images/specimenZ.png"
 }
@@ -378,6 +378,7 @@ const char=characters[currentCategory][index];
 document.getElementById("charName").innerText=char.name;
 document.getElementById("charPronouns").innerText=char.pronouns;
 document.getElementById("charJob").innerText=char.job;
+document.getElementById("charJob").innerText=char.role;
 document.getElementById("charDescription").innerText=char.description;
 
 document.getElementById("charImage").src=char.image;
