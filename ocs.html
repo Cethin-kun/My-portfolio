@@ -15,7 +15,7 @@ display:flex;
 height:100vh;
 }
 
-/* LEFT MENU */
+/* SIDEBAR */
 
 .sidebar{
 width:220px;
@@ -29,15 +29,11 @@ font-size:36px;
 margin-bottom:10px;
 }
 
-/* paragraph under OCS */
-
 .sidebar p{
 font-size:14px;
 line-height:1.5;
 margin-bottom:30px;
 }
-
-/* buttons */
 
 .menu-btn{
 display:block;
@@ -55,7 +51,7 @@ cursor:pointer;
 background:#8e8e8e;
 }
 
-/* MAIN SCREEN */
+/* MAIN AREA */
 
 .main{
 flex:1;
@@ -80,7 +76,7 @@ cursor:pointer;
 font-size:14px;
 }
 
-.tab.active{
+.tab:hover{
 background:#c1c1c1;
 }
 
@@ -93,7 +89,18 @@ background:#bfbfbf;
 padding:20px;
 }
 
-/* IMAGE AREA */
+/* FANTUMEN RED THEME */
+
+.fantum-theme{
+background:#b91c1c;
+color:white;
+}
+
+.fantum-theme .line{
+border-bottom:2px solid white;
+}
+
+/* IMAGE BOX */
 
 .image-box{
 width:220px;
@@ -105,7 +112,7 @@ justify-content:center;
 margin-right:20px;
 }
 
-/* INFO AREA */
+/* INFO */
 
 .info{
 flex:1;
@@ -145,15 +152,14 @@ background:#8e8e8e;
 
 <body>
 
-<!-- SIDEBAR -->
-
 <div class="sidebar">
 
 <h1>OCS</h1>
 
 <p>
-This is a collection of my original characters.  
-Each tab shows their pronouns, job, and description.
+This page shows my original characters.  
+Choose a category to view their profiles with their pronouns, jobs,
+and descriptions.
 </p>
 
 <button class="menu-btn" onclick="showCategory('fantum')">Fantumen</button>
@@ -161,15 +167,13 @@ Each tab shows their pronouns, job, and description.
 
 </div>
 
-<!-- MAIN CONTENT -->
-
 <div class="main">
 
 <div class="tabs" id="tabs"></div>
 
-<div class="content">
+<div class="content" id="contentArea">
 
-<div class="image-box" id="characterImage">
+<div class="image-box">
 Character<br>Picture
 </div>
 
@@ -198,11 +202,7 @@ Character description will appear here.
 
 <script>
 
-/* CHARACTER DATA */
-
 const characters = {
-
-/* Fantumen now has 5 */
 
 fantum:[
 {
@@ -236,8 +236,6 @@ job:"Guide",
 description:"Helps lost souls find their path."
 }
 ],
-
-/* Labrat now has 6 */
 
 labrat:[
 {
@@ -282,14 +280,20 @@ description:"An unidentified entity kept in containment."
 
 let currentCategory="fantum";
 
-/* LOAD CATEGORY */
-
 function showCategory(category){
 
 currentCategory=category;
 
 const tabs=document.getElementById("tabs");
+const content=document.getElementById("contentArea");
+
 tabs.innerHTML="";
+
+content.classList.remove("fantum-theme");
+
+if(category==="fantum"){
+content.classList.add("fantum-theme");
+}
 
 characters[category].forEach((char,index)=>{
 
@@ -307,8 +311,6 @@ loadCharacter(0);
 
 }
 
-/* LOAD CHARACTER */
-
 function loadCharacter(index){
 
 const char=characters[currentCategory][index];
@@ -320,12 +322,8 @@ document.getElementById("charDescription").innerText=char.description;
 
 }
 
-/* BACK BUTTON */
-
 function goBack(){
-
 showCategory(currentCategory);
-
 }
 
 </script>
