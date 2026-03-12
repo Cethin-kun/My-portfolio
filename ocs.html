@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-
 <html lang="en">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -69,6 +69,7 @@ padding:20px;
 display:flex;
 background:black;
 padding:5px;
+overflow-x:auto;
 }
 
 .tab{
@@ -78,11 +79,17 @@ margin-right:5px;
 cursor:pointer;
 font-size:14px;
 transition:all .25s ease;
+white-space:nowrap;
 }
 
 .tab:hover{
 background:#c1c1c1;
 transform:translateY(-2px);
+}
+
+.tab.active{
+background:#8e8e8e;
+color:white;
 }
 
 /* CONTENT */
@@ -100,7 +107,7 @@ from{opacity:0;}
 to{opacity:1;}
 }
 
-/* FANTUMEN THEME */
+/* FANTUM THEME */
 
 .fantum-theme{
 background:#b91c1c;
@@ -199,7 +206,8 @@ transform:translateY(-2px);
 This page shows my original characters. Choose a category to view their profiles.
 </p>
 
-<button class="menu-btn" onclick="showCategory('fantum')">Fantumen</button> <button class="menu-btn" onclick="showCategory('labrat')">Labrat</button>
+<button class="menu-btn" onclick="showCategory('fantum')">Fantumen</button>
+<button class="menu-btn" onclick="showCategory('labrat')">Labrat</button>
 
 </div>
 
@@ -210,15 +218,15 @@ This page shows my original characters. Choose a category to view their profiles
 <div class="content" id="contentArea">
 
 <div class="image-box">
-<img id="charImage" src="" alt="Character Image">
+<img id="charImage" src="assets/ocs/missing.png" alt="Character Image">
 </div>
 
 <div class="info">
 
 <h2 id="charName">Character Name</h2>
 
+<p><b id="jobLabel">Job:</b> <span id="charJob"></span></p>
 <p><b>Pronouns:</b> <span id="charPronouns"></span></p>
-<p><b>Job:</b> <span id="charJob"></span></p>
 
 <div class="line"></div>
 
@@ -237,145 +245,176 @@ Character description will appear here.
 </div>
 
 <script>
+
 const characters = {
-  fantum: [
-    {
-      name:"Risitto (Rosi)",
-      pronouns:"He/him, They/Them, it/its",
-      job:"Theater Actor/Director/Owner",
-      description:"When he was a young nocturan (a vampire like creature, having animal like features) he led many demons, helping them eacape Pandemoneus (a hell like place) and lead better lives, after 100 years he decides to settle down and build a theater from scratch, it started as a small stage that he and some demon friends would perform on, but after years of people supporting them in their performances it eventually lead the theater to be Fantumens most famous theater. 150 Years pass and he spots a demon in the crowd, this demon was peculiar to him, at first he thought nothing of it until this demon became a regular at his theater, the demon would watch him perform with such sparkle in his eyes, the way this demon would look at him like he was the most beautiful thing on the stage. After some time spent with this demon, Rosi decided that he would make this demon his husband no matter the cost, and he eventually did, he raised two sons with him and lived happily, before one day while on their way home from vacation they needed to pass the Radiance Empire who is known to dislike species that arent human. While trying to go home they were spotted, and attacked by a  Radience soldier his husband was furious trying to gesture for the knights to go away but gets attacked himself, and killed while him and his children run away, Rosi after this loss, will end up being more protective over his children leading to one of them running away, after figuring out that one of his children ran away he went in search of him to make sure he’s safe.",
-      image:"assets/ocs/rosi.png"
-    },
-    {
-      name:"Cethin Darkshade",
-      pronouns:"He/Him, it/its",
-      job:"Painter",
-      description:"[Information yet to be added.]",
-      image:"assets/ocs/cethin.png"
-    },
-    {
-      name:"Kage Macaroni Darkshade",
-      pronouns:"He/Him",
-      job:"Casino owner",
-      description:"[Information yet to be added.]",
-      image:"assets/ocs/kage.png"
-    },
-    {
-      name:"Shadow Fagottini Darkshade",
-      pronouns:"They/Them, He/Him",
-      job:"Entertainer",
-      description:"[information yet to be added.]",
-      image:"assets/ocs/shadow.png"
-    },
-    {
-      name:"To be added",
-      pronouns:"???",
-      job:"???",
-      description:"??",
-      image:"assets/ocs/missing.png"
-    }
-  ],
 
-  labrat: [
+fantum: [
 
-    {
-      name:"Risotto Darkshade",
-      pronouns:"He/Him, They/Them",
-      role:"Doctor/Caretaker",
-      description:"His goal is to “revive” his late husband’s image, but turning his experiment into an identical looking person to his husband’s old self portraits, and using multiple manipulation tactics so the experiment would also act like him.",
-      image:"assets/ocs/docros.png"
-    },
-    {
-      name:"#0911 "Cethin"",
-      pronouns:"It/its",
-      role:"Clone attempt",
-      description:"A man who woke up in a white room one, the player could choose to fall in love with doctor Risotto, or run away, but you have a sinking feeling in your gut that it will all end the same way..",
-      image:"assets/ocs/0911.png"
-    },
-    {
-      name:"Owen",
-      pronouns:"He/Him",
-      role:"Scientist",
-      description:"[Information not found.]",
-      image:"assets/ocs/owen.png"
-    },
-    {
-      name:"#1003 Kage",
-      pronouns:"he/him",
-      role:"Patient",
-      description:"[Information not found.]",
-      image:"assets/ocs/1003.png"
-    },
-    {
-      name:"Kahel",
-      pronouns:"He/Him, They/Them",
-      role:"Mycologist",
-      description:"[Information not found.]",
-      image:"assets/ocs/kahel.png"
-    },
-    {
-      name:"#1422 Homura",
-      pronouns:"He/Him",
-      role:"Patient",
-      description:"Subject of experimentation.",
-      image:"assets/ocs/1422.png"
-    }
+{
+name:"Risitto (Rosi)",
+pronouns:"He/him, They/Them, it/its",
+job:"Theater Actor / Director / Owner",
+description:"When he was a young nocturan he led many demons escaping Pandemoneus and helped them live better lives. After 100 years he settled down and built a theater from scratch. It began as a small stage with friends, but over time it became Fantumen’s most famous theater. After 150 years he noticed a demon in the crowd who watched him perform with admiration. Eventually Rosi fell in love with him and made him his husband. They raised two sons together until tragedy struck when Radiance soldiers attacked them for not being human. His husband was killed protecting them. Since then Rosi became extremely protective of his children, leading one to run away and forcing Rosi to search for him.",
+image:"assets/ocs/rosi.png"
+},
 
-  ]
+{
+name:"Cethin Darkshade",
+pronouns:"He/Him, it/its",
+job:"Painter",
+description:"[Information yet to be added.]",
+image:"assets/ocs/cethin.png"
+},
+
+{
+name:"Kage Macaroni Darkshade",
+pronouns:"He/Him",
+job:"Casino Owner",
+description:"[Information yet to be added.]",
+image:"assets/ocs/kage.png"
+},
+
+{
+name:"Shadow Fagottini Darkshade",
+pronouns:"They/Them, He/Him",
+job:"Entertainer",
+description:"[Information yet to be added.]",
+image:"assets/ocs/shadow.png"
+},
+
+{
+name:"To be added",
+pronouns:"???",
+job:"???",
+description:"??",
+image:"assets/ocs/missing.png"
+}
+
+],
+
+labrat: [
+
+{
+name:"Risotto Darkshade",
+pronouns:"He/Him, They/Them",
+role:"Doctor / Caretaker",
+description:"His goal is to revive his late husband’s image by turning his experiment into someone identical to his husband’s old portraits while manipulating the experiment to behave the same way.",
+image:"assets/ocs/docros.png"
+},
+
+{
+name:"#0911 \"Cethin\"",
+pronouns:"It/its",
+role:"Clone attempt",
+description:"A man who woke up in a white room. The player can choose to fall in love with Doctor Risotto or attempt to escape, but a sinking feeling suggests the ending will always be the same.",
+image:"assets/ocs/0911.png"
+},
+
+{
+name:"Owen",
+pronouns:"He/Him",
+role:"Scientist",
+description:"[Information not found.]",
+image:"assets/ocs/owen.png"
+},
+
+{
+name:"#1003 Kage",
+pronouns:"He/Him",
+role:"Patient",
+description:"[Information not found.]",
+image:"assets/ocs/1003.png"
+},
+
+{
+name:"Kahel",
+pronouns:"He/Him, They/Them",
+role:"Mycologist",
+description:"[Information not found.]",
+image:"assets/ocs/kahel.png"
+},
+
+{
+name:"#1422 Homura",
+pronouns:"He/Him",
+role:"Patient",
+description:"Subject of experimentation.",
+image:"assets/ocs/1422.png"
+}
+
+]
+
 };
 
 let currentCategory = "fantum";
 
 function showCategory(category){
-  currentCategory = category;
 
-  const tabs = document.getElementById("tabs");
-  const content = document.getElementById("contentArea");
+currentCategory = category;
 
-  tabs.innerHTML = "";
-  content.classList.remove("fantum-theme");
+const tabs = document.getElementById("tabs");
+const content = document.getElementById("contentArea");
 
-  if(category === "fantum"){
-    content.classList.add("fantum-theme");
-  }
+tabs.innerHTML = "";
 
-  characters[category].forEach((char, index) => {
-    const tab = document.createElement("div");
-    tab.className = "tab";
-    tab.innerText = char.name;
-    tab.onclick = () => loadCharacter(index);
-    tabs.appendChild(tab);
-  });
+content.classList.remove("fantum-theme");
 
-  loadCharacter(0);
+if(category === "fantum"){
+content.classList.add("fantum-theme");
+}
+
+characters[category].forEach((char,index)=>{
+
+const tab=document.createElement("div");
+
+tab.className="tab";
+tab.innerText=char.name;
+
+tab.onclick=()=>loadCharacter(index);
+
+tabs.appendChild(tab);
+
+});
+
+loadCharacter(0);
+
 }
 
 function loadCharacter(index){
-  const char = characters[currentCategory][index];
 
-  document.getElementById("charName").innerText = char.name;
-  document.getElementById("charPronouns").innerText = char.pronouns;
+const char=characters[currentCategory][index];
 
-  // Show job for Fantum, role for Labrat
-  if(currentCategory === "fantum"){
-    document.getElementById("charJob").previousElementSibling.innerText = "Job:";
-    document.getElementById("charJob").innerText = char.job;
-  } else {
-    document.getElementById("charJob").previousElementSibling.innerText = "Role:";
-    document.getElementById("charJob").innerText = char.role;
-  }
+document.getElementById("charName").innerText=char.name;
+document.getElementById("charPronouns").innerText=char.pronouns;
+document.getElementById("charDescription").innerText=char.description;
 
-  document.getElementById("charDescription").innerText = char.description;
-  document.getElementById("charImage").src = char.image;
+document.getElementById("charImage").src = char.image || "assets/ocs/missing.png";
+
+const label=document.getElementById("jobLabel");
+
+if(currentCategory==="fantum"){
+label.innerText="Job:";
+document.getElementById("charJob").innerText=char.job;
+}else{
+label.innerText="Role:";
+document.getElementById("charJob").innerText=char.role;
+}
+
+/* highlight active tab */
+
+document.querySelectorAll(".tab").forEach((t,i)=>{
+t.classList.toggle("active",i===index);
+});
+
 }
 
 function goBack(){
-  // Redirect to homepage.html
-  window.location.href = "homepage.html";
+window.location.href="homepage.html";
 }
 
-// Initialize with Fantum category
 showCategory("fantum");
+
 </script>
+
 </body>
 </html>
